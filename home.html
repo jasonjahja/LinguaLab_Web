@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Words of The Day</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">LinguaLab</a></div>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="#words-section">Dictionary</a></li>
+                <li><a href="#courses-sections">Courses</a></li>
+            </ul>
+            <a href="#" class="profile-btn">P</a>
+        </nav>
+    </header>
+
+    <!-- Words of the Day Section -->
+    <section class="words-section" id="words-section">
+        <h2>Words of The Day</h2>
+        <h3>Pick a minimum of 3 to learn</h3>
+        <div class="word-list" id="word-list"></div>
+        <div id="notification"></div>
+        <div id="saved-words">Saved words: </div>
+        <button id="confirm-btn" class="cta-btn"><a href="word.html" class="cta-btn-text">Confirm</a></button>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses-sections" id="courses-sections">
+        <h2>Courses</h2>
+        <div class="courses-section">
+            <h3>Subcourses</h3>
+            <div class="card-container" id="card-container"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 English Virtual Lab. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

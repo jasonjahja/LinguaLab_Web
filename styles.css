@@ -1,0 +1,382 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Nunito, sans-serif;
+}
+
+body {
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+h1 {
+    font-size: 5em;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 1vw;
+}
+
+h3 {
+    font-size: 1.8em;
+}
+
+p {
+    font-size: 1em;
+}
+
+/* Navbar */
+.navbar {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    background-color: #fff;
+    padding: 20px 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+/* .navbar .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #1e90ff;
+    cursor: pointer;
+} */
+
+.navbar .logo a {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #1e90ff;
+    cursor: pointer;
+}
+
+.navbar ul {
+    margin-left: auto;
+    list-style-type: none;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-right: 3vw;
+}
+
+.navbar .login-btn {
+    margin-left: auto;
+    padding: 8px 60px;
+    background-color: #1e90ff;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.navbar .profile-btn {
+    padding: 15px 20px;
+    background-color: #1e90ff;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+}
+
+.hero {
+    height: 100vh; /* Full height of the viewport */
+    text-align: center;
+    padding: 38vh 0; /* Optional: Adjust side padding for smaller screens */
+    background: linear-gradient(135deg, #cdeffc, #007bff);
+    color: #fff;
+}
+
+.hero h1 {
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.5em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+/* Features Section */
+.features {
+    padding: 80px 100px;
+    background-color: #f7f7f7;
+}
+
+.feature-image {
+    height: 25vw;
+}
+
+.features h2 {
+    text-align: center;
+}
+
+.feature-sections {
+    justify-content: center;
+}
+
+.feature-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10vw;
+}
+
+.feature-texts {
+    padding: 0 0 0 15vw;
+}
+
+.features h3 {
+    margin-bottom: 1.5vw;
+    font-weight: bold;
+}
+
+.feature-texts2 {
+    padding: 0 15vw 0 0;
+}
+
+/* Call to Action */
+.cta {
+    text-align: center;
+    items-align: center;
+    padding: 3vw 0;
+    background-color: #cdeffc;
+}
+
+.cta h3 {
+    font-weight: normal;
+}
+
+.cta-image {
+    height: 20vw;
+}
+
+.cta-image img {
+    height: 100%;
+}
+
+.cta-btn {
+    margin-top: 2vw;
+    padding: 10px;
+    background-color: #1e90ff;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+}
+
+.cta-btn-text {
+    color: white;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding: 240px;
+}
+
+/* Footer */
+footer {
+    margin-top: 8vw;
+    background-color: #333;
+    color: white;
+    padding: 2vw;
+    text-align: center;
+}
+
+/* footer {
+    
+    font-size: 0.8em;
+    text-align: center;
+    padding: 2vw;
+    background-color: #1e90ff;
+    color: white;
+} */
+
+/* Words Section */
+.words-section {
+    text-align: center;
+    padding: 12vw 6vw 0;
+}
+
+.words-section h3 {
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+.word-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 4vw;
+}
+
+.word-btn {
+    position: relative; /* To position the dropdown below the button */
+    padding: 8px 40px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.word-btn:hover {
+    background-color: #1e90ff; /* Blue background on hover */
+    color: white;
+    border-color: #1e90ff;
+}
+
+.word-btn:active {
+    background-color: #104e8b; /* Darker blue when pressed */
+    border-color: #104e8b;
+}
+
+.word-btn.active {
+    background-color: #1e90ff;
+    color: white;
+    border-color: #1e90ff;
+}
+
+/* Dropdown for the word definition */
+.word-dropdown {
+    display: none;
+    color: black;
+    position: absolute;
+    top: 120%; /* Position it right below the button */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 1vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Show the dropdown when hovering over the button */
+.word-btn:hover .word-dropdown {
+    display: block;
+}
+
+/* Optional: make sure dropdown doesn't hide when hovering over it */
+.word-dropdown:hover {
+    display: block;
+}
+
+
+/* Courses Section */
+.courses-sections {
+    text-align: center;
+    padding: 13vw 6vw 0;
+}
+
+.courses-section {
+    text-align: left;
+    margin-bottom: 3vw;
+}
+
+.card-container {
+    margin-top:1.5vw;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.card-thumbnail img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    background-color: #E1E9FF; /* Fallback background color */
+}
+
+.card-content {
+    padding: 12px 18px;
+}
+
+.card-content h3 {
+    margin: 12px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.card-content p {
+    color: #333;
+    font-size: 0.9em;
+    margin:2vw 0;
+}
+
+/* word.html */
+main {
+    padding: 12vw 10vw 6vw;
+}
+
+.word-details {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.pronunciation {
+    font-size: 18px;
+    color: gray;
+}
+
+.part-of-speech {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.definition {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.example {
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.synonyms {
+    margin-top: 20px;
+}
+
+.synonym-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 5px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1e90ff;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.btn-back:hover {
+    background-color: #0073e6;
+}

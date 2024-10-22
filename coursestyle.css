@@ -1,0 +1,169 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f9f9f9 30%, #e2ebff 100%);
+    height: full;
+}
+
+/* Navbar */
+.navbar {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    background-color: #fff;
+    padding: 20px 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+/* .navbar .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #1e90ff;
+    cursor: pointer;
+} */
+
+.navbar .logo a {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #1e90ff;
+    cursor: pointer;
+}
+
+.navbar ul {
+    margin-left: auto;
+    list-style-type: none;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-right: 3vw;
+}
+
+.navbar .profile-btn {
+    padding: 15px 20px;
+    background-color: #1e90ff;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+    background-color: #e0e0e0;
+    height: 6px;
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.progress {
+    width: 40%;
+    background-color: #007BFF;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s;
+}
+
+/* Quiz Container */
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 10px 0;
+    color: #007BFF;
+}
+
+.back-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Question Section */
+.question-section {
+    margin-bottom: 30px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.drop-box {
+    width: 130px;
+    height: 40px;
+    border: 2px dashed #007BFF;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 40px;
+    background-color: white;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.drop-box:hover {
+    background-color: #f0f8ff;
+}
+
+/* Word Buttons */
+.word-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.word-btn {
+    background-color: white;
+    border: 2px solid #007BFF;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.word-btn:hover {
+    background-color: #007BFF;
+    color: white;
+    box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.2);
+}
+
+/* Confirm Button */
+.cta-btn {
+    padding: 12px 40px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Notification Styling */
+#notification {
+    margin-top: 20px;
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+}
