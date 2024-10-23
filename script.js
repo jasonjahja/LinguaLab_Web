@@ -80,10 +80,10 @@ function saveWord(word) {
     // Ensure only 3 words are saved
     if (savedWords.length > 3) {
         // Display a notification if more than 3 words are selected
-        document.getElementById('notification-course').innerText = 'You have selected more than 3 words.';
+        document.getElementById('notification').innerText = 'You have selected more than 3 words.';
     } else {
         // Clear the notification if 3 or fewer words are selected
-        document.getElementById('notification-course').innerText = '';
+        document.getElementById('notification').innerText = '';
     }
 
     displaySavedWords(); // Update the display
@@ -120,6 +120,18 @@ function removeElement(array, wordToRemove) {
 function displaySavedWords() {
     const savedWordsDiv = document.getElementById('saved-words');
     savedWordsDiv.innerHTML = "Saved words: " + savedWords.join(', ');
+}
+
+// Function to save selected words and update sidebar
+function confirmSelection() {
+    // Update the sidebar with the saved words
+    const sidebar = document.getElementById('sidebar-saved-words');
+    if (sidebar) {
+        sidebar.innerHTML = 'Selected words: ' + savedWords.join(', ');
+    }
+
+    // Redirect to words.html (you can replace with any action you want)
+    window.location.href = 'word.html';
 }
 
 let courses = [
@@ -166,7 +178,6 @@ const quizData = [
         options: ["Apple", "Orange", "Banana", "Pear"],
         correctAnswer: "Banana"
     },
-    // Add more levels as needed
 ];
 
 let currentLevel = 0;
@@ -192,6 +203,12 @@ function renderLevel(levelIndex) {
             <div id="notification-course"></div>
         </div>
     `;
+}
+
+function updateProgressBar(levelIndex) {
+    const progressBar = document.getElementById('progress');
+    const progressPercent = (levelIndex / quizData.length) * 100; // Calculate percentage
+    progressBar.style.width = progressPercent + '%'; // Update progress bar width
 }
 
 // Drag and Drop Functions
@@ -246,6 +263,7 @@ function checkAnswer(levelIndex) {
         disableDragAndDrop();  // Disable drag-and-drop once the answer is confirmed
         document.querySelector('.cta-btn-course').style.display = 'none'; // Hide confirm button
         showNextLevelButton(levelIndex + 1);  // Show next level button
+        updateProgressBar(levelIndex+1);
     }
 }
 
@@ -290,5 +308,6 @@ window.onload = () => {
     // Check if quiz container exists before calling renderLevel
     if (document.getElementById('quiz-container')) {
         renderLevel(0); // Start with the first level
+        updateProgressBar(0);
     }
 };
