@@ -80,10 +80,10 @@ function saveWord(word) {
     // Ensure only 3 words are saved
     if (savedWords.length > 3) {
         // Display a notification if more than 3 words are selected
-        document.getElementById('notification').innerText = 'You have selected more than 3 words.';
+        document.getElementById('notification-course').innerText = 'You have selected more than 3 words.';
     } else {
         // Clear the notification if 3 or fewer words are selected
-        document.getElementById('notification').innerText = '';
+        document.getElementById('notification-course').innerText = '';
     }
 
     displaySavedWords(); // Update the display
@@ -153,10 +153,46 @@ function createCourseCards() {
     );
 }
 
-window.onload = () => {
-    createWordButtons();
-    createCourseCards();
-};
+const quizData = [
+    {
+        level: 1,
+        question: "Usage Examples Usage _____ Examples Usage Examples",
+        options: ["Punctual", "Aberration", "Perseverance", "Gratitude"],
+        correctAnswer: "Punctual"
+    },
+    {
+        level: 2,
+        question: "How do you say _____ in English?",
+        options: ["Apple", "Orange", "Banana", "Pear"],
+        correctAnswer: "Banana"
+    },
+    // Add more levels as needed
+];
+
+let currentLevel = 0;
+
+function renderLevel(levelIndex) {
+    const levelData = quizData[levelIndex];
+    const quizContainer = document.getElementById('quiz-container');
+    
+    // Generate the question
+    quizContainer.innerHTML = `
+        <div id="level${levelData.level}" class="quiz-level active">
+            <div class="question-section">
+                <p>${levelData.question.replace("_____", '<span class="drop-box" id="drop-box" ondrop="drop(event)" ondragover="allowDrop(event)"></span>')}</p>
+            </div>
+            <div class="word-options">
+                ${levelData.options.map((option, index) => `
+                    <div class="course-option-btn" id="word${index+1}" draggable="true" ondragstart="drag(event)">${option}</div>
+                `).join('')}
+            </div>
+            <div class="btn-div">
+                <button class="cta-btn-course" onclick="checkAnswer(${levelIndex})">Confirm</button>
+            </div>
+            <div id="notification-course"></div>
+        </div>
+    `;
+}
 
 // Drag and Drop Functions
 function allowDrop(event) {
@@ -177,22 +213,82 @@ function drop(event) {
     dropBox.innerText = draggedElement.innerText;
     dropBox.style.borderColor = '#28a745';  // Change border color on drop
 
+    // Modify the font size and other CSS properties
+    dropBox.style.fontSize = '18px';         // Change the font size
+    dropBox.style.padding = 'auto';
+
     // Clear notification
-    document.getElementById('notification').innerText = '';
+    document.getElementById('notification-course').style.display = 'none';
 }
 
 // Check Answer Function
-function checkAnswer() {
+function checkAnswer(levelIndex) {
     const dropBox = document.getElementById('drop-box');
     const answer = dropBox.innerText;
+    const correctAnswer = quizData[levelIndex].correctAnswer;
+    const notification = document.getElementById('notification-course');
 
-    if (answer === 'Punctual') {
-        document.getElementById('notification').style.color = 'green';
-        document.getElementById('notification').innerText = 'Correct Answer!';
-    } else if (answer === '') {
-        document.getElementById('notification').innerText = 'Please drag a word into the box!';
+    // Show notification and disable drag-and-drop after confirming
+    if (answer === '') {
+        notification.style.display = 'block';
+        notification.style.color = 'red';
+        notification.innerText = 'Please drag a word into the box!';
     } else {
-        document.getElementById('notification').style.color = 'red';
-        document.getElementById('notification').innerText = 'Wrong Answer. Try again.';
+        if (answer === correctAnswer) {
+            notification.style.display = 'block';
+            notification.style.color = 'green';
+            notification.innerText = 'Correct Answer. Good Job!';
+        } else {
+            notification.style.display = 'block';
+            notification.style.color = 'red';
+            notification.innerText = 'Wrong Answer. Try again.';
+        }
+        disableDragAndDrop();  // Disable drag-and-drop once the answer is confirmed
+        document.querySelector('.cta-btn-course').style.display = 'none'; // Hide confirm button
+        showNextLevelButton(levelIndex + 1);  // Show next level button
     }
 }
+
+function disableDragAndDrop() {
+    // Disable the drag-and-drop for all word buttons
+    document.querySelectorAll('.course-option-btn').forEach(button => {
+        button.setAttribute('draggable', 'false');  // Disable draggable attribute
+        button.classList.add('disabled');
+    });
+
+    // Disable the drop area by removing the event listeners
+    const dropBox = document.getElementById('drop-box');
+    dropBox.ondragover = null;
+    dropBox.ondrop = null;
+}
+
+function showNextLevelButton(nextLevelIndex) {
+    const btnDiv = document.querySelector('.btn-div');
+    btnDiv.innerHTML = `<button class="cta-btn-course" onclick="nextLevel(${nextLevelIndex})">Next Level</button>`;
+}
+
+// Render next level
+function nextLevel(nextLevelIndex) {
+    if (nextLevelIndex < quizData.length) {
+        renderLevel(nextLevelIndex);
+    } else {
+        document.getElementById('quiz-container').innerHTML = '<div><h2 style="padding: 20px; color: green; font-size: 24px; text-align: center;">Congratulations! You have completed the quiz.</h2><div style="text-align: center;"><button class="cta-btn"><a href="home.html" class="cta-btn-text">Confirm</a></button></div></div>';
+    }
+}
+
+window.onload = () => {
+    // Check if word list container exists before calling createWordButtons
+    if (document.getElementById('word-list')) {
+        createWordButtons();
+    }
+
+    // Check if course list container exists before calling createCourseCards
+    if (document.getElementById('card-container')) {
+        createCourseCards();
+    }
+
+    // Check if quiz container exists before calling renderLevel
+    if (document.getElementById('quiz-container')) {
+        renderLevel(0); // Start with the first level
+    }
+};

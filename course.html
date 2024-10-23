@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LinguaLab Quiz</title>
-    <link rel="stylesheet" href="coursestyle.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -21,35 +21,18 @@
         </nav>
     </header>
 
-    <!-- Progress Bar -->
-    <div class="progress-bar">
-        <div class="progress"></div>
-    </div>
-
-    <!-- Quiz Container -->
-    <div class="quiz-container">
+    <main class="course-page">
         <!-- Back Arrow -->
         <button class="back-btn">&#8592;</button>
-
-        <!-- Question Section -->
-        <div class="question-section">
-            <p>Usage Examples Usage <span class="drop-box" id="drop-box" ondrop="drop(event)" ondragover="allowDrop(event)"></span> Examples Usage Examples</p>
+        
+            <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress"></div>
         </div>
 
-        <!-- Word Options -->
-        <div class="word-options">
-            <div class="word-btn" id="word1" draggable="true" ondragstart="drag(event)">Punctual</div>
-            <div class="word-btn" id="word2" draggable="true" ondragstart="drag(event)">Aberration</div>
-            <div class="word-btn" id="word3" draggable="true" ondragstart="drag(event)">Perseverance</div>
-            <div class="word-btn" id="word4" draggable="true" ondragstart="drag(event)">Gratitude</div>
-        </div>
-
-        <!-- Confirm Button -->
-        <button class="cta-btn" onclick="checkAnswer()">Confirm</button>
-
-        <!-- Notification Section -->
-        <div id="notification"></div>
-    </div>
+        <!-- Quiz Container -->
+        <div id="quiz-container"></div>
+    </main>
 
     <script src="script.js"></script>
 </body>

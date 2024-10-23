@@ -33,6 +33,10 @@ p {
     font-size: 1em;
 }
 
+main {
+    padding-top: 12vw;
+}
+
 /* Navbar */
 .navbar {
     overflow: hidden;
@@ -46,13 +50,6 @@ p {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 999;
 }
-
-/* .navbar .logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #1e90ff;
-    cursor: pointer;
-} */
 
 .navbar .logo a {
     font-size: 1.5em;
@@ -148,7 +145,6 @@ p {
 /* Call to Action */
 .cta {
     text-align: center;
-    items-align: center;
     padding: 3vw 0;
     background-color: #cdeffc;
 }
@@ -159,6 +155,7 @@ p {
 
 .cta-image {
     height: 20vw;
+    padding-bottom: 2vw;
 }
 
 .cta-image img {
@@ -168,17 +165,46 @@ p {
 .cta-btn {
     margin-top: 2vw;
     padding: 10px;
-    background-color: #1e90ff;
+    background-color: #007BFF;
     border: none;
-    border-radius: 60px;
+    border-radius: 25px;
     cursor: pointer;
+    margin: 0 auto;
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 .cta-btn-text {
     color: white;
     font-size: 1.3em;
     font-weight: bold;
-    padding: 240px;
+    padding: 0 240px;
+}
+
+.cta-btn-course {
+    padding: 12px 40px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-btn-course:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.btn-div {
+    text-align: center;
 }
 
 /* Footer */
@@ -202,7 +228,7 @@ footer {
 /* Words Section */
 .words-section {
     text-align: center;
-    padding: 12vw 6vw 0;
+    padding: 0 6vw;
 }
 
 .words-section h3 {
@@ -323,7 +349,7 @@ footer {
 }
 
 /* word.html */
-main {
+.word-page {
     padding: 12vw 10vw 6vw;
 }
 
@@ -380,3 +406,100 @@ main {
 .btn-back:hover {
     background-color: #0073e6;
 }
+
+/* Course Page */
+.course-page {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f9f9f9 30%, #e2ebff 100%);
+    height: 100vh;
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+    background-color: #e0e0e0;
+    height: 6px;
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.progress {
+    width: 40%;
+    background-color: #007BFF;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s;
+}
+
+/* Quiz Container */
+.back-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Question Section */
+.question-section {
+    margin-bottom: 30px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.drop-box {
+    width: 130px;
+    height: 40px;
+    border: 2px dashed #007BFF;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 40px;
+    background-color: white;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.drop-box:hover {
+    background-color: #f0f8ff;
+}
+
+.course-option-btn {
+    background-color: white;
+    border: 2px solid #007BFF;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.course-option-btn:hover {
+    background-color: #007BFF;
+    color: white;
+    box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.2);
+}
+
+/* Disable hover effect when buttons are disabled */
+.course-option-btn.disabled {
+    cursor: default;  /* Show a disabled cursor */
+    background-color: gray; /* Use the background color set in JS */
+    color: white;          /* Maintain the color when disabled */
+    box-shadow: none;      /* Remove the shadow effect */
+}
+
+/* Word Buttons */
+.word-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Notification Styling */
+#notification-course {
+    margin-top: 4vw;
+    padding: 2vw 6vw;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: blue;
+    display: none;
+}
+
+.quiz-level { display: none; } /* Hide all levels by default */
+.active { display: block; }    /* Show active level */
