@@ -4,22 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Punctual - Definition</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo"><a href="index.html"></a>LinguaLab</div>
-            <ul>
+            <div class="logo"><a href="index.html">LinguaLab</a></div>
+            <ul class="nav-links">
                 <li><a href="home.html">Home</a></li>
-                <li><a href="#words-section">Dictionary</a></li>
-                <li><a href="#courses-sections">Courses</a></li>
+                <li><a href="word.html">Words</a></li>
+                <li><a href="course.html">Quiz</a></li>
             </ul>
             <a href="#" class="profile-btn">P</a>
+            <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
         </nav>
+        
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <a href="javascript:void(0)" class="close-btn" onclick="toggleSidebar()">&times;</a>
+            <a href="home.html">Home</a>
+            <a href="home.html">Words</a>
+            <a href="#courses-sections">Quiz</a>
+        </div>
     </header>
 
-    <main>
+    <main class="word-page">
         <section class="word-details">
             <h2>punc·tu·al</h2>
             <p class="pronunciation">/ˈpʌŋktʃuəl/</p>
@@ -34,9 +43,9 @@
 
             <h3>Synonyms</h3>
             <div class="synonyms">
-                <span class="synonym-btn">On-time</span>
-                <span class="synonym-btn">Prompt</span>
-                <span class="synonym-btn">Timely</span>
+                <div class="word-btn"><a href="word.html">On-time</a></div>
+                <div class="word-btn"><a href="word.html">Prompt</a></div>
+                <div class="word-btn"><a href="word.html">Timely</a></div>
             </div>
 
             <h3>Origin</h3>
@@ -79,7 +88,7 @@
                 </div>
             </div>
 
-            <a href="home.html" class="btn-back">Back to Home</a>
+            <div style="text-align: center; margin: 7vw;"><a href="home.html" class="done-btn">Back to Home</a></div>
         </section>
     </main>
 
