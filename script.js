@@ -135,12 +135,12 @@ function confirmSelection() {
 }
 
 let courses = [
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', subtitle: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', subtitle: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', subtitle: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', subtitle: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', subtitle: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', subtitle: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
+    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
+    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
+    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
+    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
+    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
+    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
 ];
 
 // Function to create word buttons
@@ -148,9 +148,19 @@ function createCourseCards() {
     const courseListDiv = document.getElementById('card-container');
     courseListDiv.innerHTML = ''; // Clear the word list
 
-    // Create buttons for each word in the words array
-    courses.forEach(({ thumbnail, title, subtitle, link }) => 
+    courses.forEach(({ thumbnail, title, description, link }, index) => 
         courseListDiv.innerHTML += 
+        // `<div class="card" onclick="openModal(${index})"> 
+        //     <div class="card-thumbnail">
+        //         <img src="${thumbnail}" alt="${title} Thumbnail">
+        //     </div>
+        //     <div class="card-content">
+        //         <h3>${title}</h3>
+        //         <p>${description}</p>
+        //     </div>
+        // </div>`
+
+
         `<div class="card"> 
             <a href=${link}>
                 <div class="card-thumbnail">
@@ -158,12 +168,49 @@ function createCourseCards() {
                 </div>
                 <div class="card-content">
                     <h3>${title}</h3>
-                    <p>${subtitle}</p>
+                    <p>${description}</p>
                 </div>
             </a>
         </div>`
     );
 }
+
+// Open modal with course details
+// function openModal(index) {
+//     const modal = document.getElementById('course-modal');
+//     const selectedCourse = courses[index];
+
+//     // Set modal content
+//     document.getElementById('modal-thumbnail').src = selectedCourse.thumbnail;
+//     document.getElementById('modal-title').innerText = selectedCourse.title;
+//     document.getElementById('modal-description').innerText = selectedCourse.description;
+    
+//     // Set button text and link
+//     const modalBtn = document.getElementById('modal-btn');
+//     modalBtn.innerHTML = 'Go to Course'; // Text inside the button
+//     modalBtn.onclick = function() {
+//         window.location.href = selectedCourse.link; // Redirect to course link when clicked
+//     };
+
+//     // Show modal
+//     modal.style.display = 'block';
+// }
+
+// // Close the modal when user clicks outside or on close button
+// function closeModal() {
+//     document.getElementById('course-modal').style.display = 'none';
+// }
+
+// // Close modal if clicking outside of it
+// window.onclick = function(event) {
+//     const modal = document.getElementById('course-modal');
+//     if (event.target === modal) {
+//         closeModal();
+//     }
+// }
+
+// // Close modal when clicking the close button
+// document.querySelector('.close-btn').onclick = closeModal;
 
 const quizData = [
     {
@@ -175,6 +222,18 @@ const quizData = [
     {
         level: 2,
         question: "How do you say _____ in English?",
+        options: ["Apple", "Orange", "Banana", "Pear"],
+        correctAnswer: "Banana"
+    },
+    {
+        level: 3,
+        question: "aaaaaHow do you say _____ in English?",
+        options: ["Apple", "Orange", "Banana", "Pear"],
+        correctAnswer: "Banana"
+    },
+    {
+        level: 4,
+        question: "How ffffffdo you say _____ in English?",
         options: ["Apple", "Orange", "Banana", "Pear"],
         correctAnswer: "Banana"
     },

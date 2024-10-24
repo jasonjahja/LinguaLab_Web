@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Definition</title>
+</head>
+<body>
+
+    <h2 id="word-title">Word: </h2>
+    <p id="word-definition">Definition: </p>
+
+    <script>
+        // Get the word from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const word = urlParams.get('word');
+
+        // Define the word definitions
+        const wordDefinitions = {
+            'Punctual': 'Happening or doing something at the agreed or proper time.',
+            'Aberration': 'A departure from what is normal, usual, or expected.',
+            'Perseverance': 'Persistence in doing something despite difficulty or delay in achieving success.',
+            'Gratitude': 'The quality of being thankful; readiness to show appreciation.'
+        };
+
+        // Display the word and its definition
+        document.getElementById('word-title').innerText = `Word: ${word}`;
+        document.getElementById('word-definition').innerText = `Definition: ${wordDefinitions[word] || 'Definition not found'}`;
+    </script>
+
+</body>
+</html>
