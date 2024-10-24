@@ -41,7 +41,7 @@ p {
 }
 
 .course-page {
-    padding-top: 80px;
+    padding: 80px 20px;
 }
 
 /* Navbar */
@@ -400,7 +400,7 @@ p {
 }
 
 .cta-btn {
-    margin-top: 2vw;
+    margin-top: 20px;
     padding: 10px;
     background-color: #007BFF;
     border: none;
@@ -752,6 +752,17 @@ footer {
     padding: 0 240px;
 }
 
+#confirm-btn:disabled {
+    background-color: #ccc; 
+    cursor: not-allowed;
+    pointer-events: none; 
+}
+
+#confirm-btn:disabled:hover {
+    background-color: #ccc;
+    transform: none;
+}
+
 #notification {
     margin-top: 1vw;
     color: #dc3545;
@@ -874,16 +885,6 @@ footer {
     flex-wrap: wrap;
 }
 
-
-
-
-
-
-
-
-
-
-
 /* Course Page */
 .course-page {
     font-family: 'Arial', sans-serif;
@@ -898,7 +899,7 @@ footer {
     width: 80%;
     margin: 3vw auto;
     border-radius: 10px;
-    margin-bottom: 4vw;
+    margin-bottom: 40px;
 }
 
 .progress {
@@ -917,13 +918,13 @@ footer {
 
 /* Question Section */
 .question-section {
-    margin-bottom: 30px;
+    margin-bottom: 3vw;
     font-size: 22px;
     text-align: center;
 }
 
 .answer-section {
-    margin: 2vw 0 4vw 0;
+    margin: 20px 0 40px 0;
     font-size: 22px;
     text-align: center;
 }
@@ -952,7 +953,7 @@ footer {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
-    margin-bottom: 1.5vw;
+    margin-bottom: 15px;
 }
 
 .course-option-btn:hover {
@@ -973,8 +974,9 @@ footer {
 .word-options {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 2vw;
     margin-bottom: 30px;
+    flex-wrap: wrap;
 }
 
 /* Disable hover effect when buttons are disabled */
@@ -1159,6 +1161,11 @@ a.done-btn-text {
 
 /* For Mobile Devices (480px and up) */
 @media (max-width: 480px) {
+
+    .word-btn {
+
+    }
+
     .cta-btn, .retake-btn, .done-btn {
         padding: 8px 15px;
         width: 100%; /* Full-width button on mobile */
@@ -1168,5 +1175,169 @@ a.done-btn-text {
     .cta-btn-text {
         padding: 0 60px; /* Reduce padding further for mobile */
         font-size: 1em; /* Smaller text size on mobile */
+    }
+}
+
+/* General Styles for Responsiveness */
+@media (max-width: 1024px) {
+    .answer-section, .question-section {
+        font-size: 18px;
+    }
+
+    .drop-box {
+        width: 150px;
+        height: 35px;
+        line-height: 35px;
+    }
+
+    .course-option-btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    .results-container {
+        gap: 15px;
+    }
+
+    .result-box {
+        width: 100px;
+        height: 100px;
+    }
+
+    .retake-btn, .done-btn {
+        padding: 8px 60px;
+        font-size: 0.9em;
+    }
+
+    .details-box {
+        padding: 1.5vw 3vw;
+    }
+
+    .details-box h3 {
+        font-size: 18px;
+    }
+
+    .details-box p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .answer-section, .question-section {
+        font-size: 16px;
+    }
+
+    .drop-box {
+        width: 140px;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .course-option-btn {
+        padding: 6px 14px;
+        font-size: 0.8em;
+    }
+
+    .results-container {
+        gap: 12px;
+    }
+
+    .result-box {
+        width: 90px;
+        height: 90px;
+    }
+
+    .retake-btn, .done-btn {
+        padding: 6px 50px;
+        font-size: 0.8em;
+    }
+
+    .details-box {
+        padding: 1.5vw 2vw;
+    }
+
+    .details-box h3 {
+        font-size: 16px;
+    }
+
+    .details-box p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .answer-section, .question-section {
+        font-size: 14px;
+    }
+
+    .drop-box {
+        width: 120px;
+        height: 25px;
+        line-height: 25px;
+    }
+
+    .course-option-btn {
+        padding: 5px 10px;
+        font-size: 0.7em;
+    }
+
+    .results-container {
+        gap: 10px;
+    }
+
+    .result-box {
+        width: 80px;
+        height: 80px;
+    }
+
+    .details-box {
+        padding: 1vw 2vw;
+    }
+
+    .details-box h3 {
+        font-size: 14px;
+    }
+
+    .details-box p {
+        font-size: 12px;
+    }
+}
+
+/* Extra small devices (phones, 320px and up) */
+@media (max-width: 320px) {
+    .answer-section, .question-section {
+        font-size: 12px;
+    }
+
+    .drop-box {
+        width: 100px;
+        height: 20px;
+        line-height: 20px;
+    }
+
+    .course-option-btn {
+        padding: 4px 8px;
+        font-size: 0.6em;
+    }
+
+    .results-container {
+        gap: 8px;
+    }
+
+    .result-box {
+        width: 70px;
+        height: 70px;
+    }
+
+    .details-box {
+        padding: 0.8vw 1.5vw;
+    }
+
+    .details-box h3 {
+        font-size: 12px;
+    }
+
+    .details-box p {
+        font-size: 10px;
     }
 }

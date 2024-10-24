@@ -57,9 +57,9 @@ function saveWord(word) {
     }
 
     // Ensure only 3 words are saved
-    if (savedWords.length > 3) {
+    if (savedWords.length > 1) {
         // Display a notification if more than 3 words are selected
-        document.getElementById('notification').innerText = '* You have selected more than 3 words.';
+        document.getElementById('notification').innerText = '* You have selected more than 1 word.';
         disableConfirmButton(true); // Disable the confirm button
     } else {
         // Clear the notification if 3 or fewer words are selected
@@ -78,10 +78,12 @@ function disableConfirmButton(isDisabled) {
         confirmButton.disabled = true;
         confirmButton.style.backgroundColor = '#ccc'; // Set greyish color when disabled
         confirmButton.style.cursor = 'not-allowed';  // Change cursor to show it's disabled
+        confirmButton.onclick = (e) => e.preventDefault(); // Prevent click event from redirecting
     } else {
         confirmButton.disabled = false;
         confirmButton.style.backgroundColor = '#007BFF'; // Original button color when enabled
         confirmButton.style.cursor = 'pointer';  // Normal pointer cursor when enabled
+        confirmButton.onclick = null; // Reset any previously set onclick event
     }
 }
 
