@@ -121,31 +121,31 @@ function confirmSelection() {
 
 const courses = [
     { 
-        thumbnail: 'photo1.png', 
+        thumbnail: 'assets/8609147_5836-removebg-preview.png', 
         title: 'Book a Flight to a Tourist Destination', 
         description: 'Learn how to book flights to popular tourist destinations, with special tips on selecting affordable tickets.',  
         link: 'course.html'
     },
     { 
-        thumbnail: 'photo1.png', 
+        thumbnail: 'assets/8609147_5836-removebg-preview.png', 
         title: 'Hotel Booking for Business Trips', 
         description: 'Explore how to book the right hotels for business trips, focusing on locations, amenities, and corporate discounts.',  
         link: 'course.html'
     },
     { 
-        thumbnail: 'photo1.png', 
+        thumbnail: 'assets/8609147_5836-removebg-preview.png', 
         title: 'Renting a Car: A Complete Guide', 
         description: 'Learn how to rent a car efficiently, comparing prices, insurance options, and tips on international rentals.',  
         link: 'course.html'
     },
     { 
-        thumbnail: 'photo1.png', 
+        thumbnail: 'assets/8609147_5836-removebg-preview.png', 
         title: 'Navigating Travel Insurance', 
         description: 'Understand the different types of travel insurance and how to choose the best coverage for your trip.',  
         link: 'course.html'
     },
     { 
-        thumbnail: 'photo1.png', 
+        thumbnail: 'assets/8609147_5836-removebg-preview.png', 
         title: 'Booking Guided Tours', 
         description: 'Find out how to book guided tours for your vacation, including tips on selecting the best tour operators.',  
         link: 'course.html'
