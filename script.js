@@ -95,15 +95,32 @@ function saveWord(word) {
     // Ensure only 3 words are saved
     if (savedWords.length > 3) {
         // Display a notification if more than 3 words are selected
-        document.getElementById('notification').innerText = 'You have selected more than 3 words.';
+        document.getElementById('notification').innerText = '* You have selected more than 3 words.';
+        disableConfirmButton(true); // Disable the confirm button
     } else {
         // Clear the notification if 3 or fewer words are selected
         document.getElementById('notification').innerText = '';
+        disableConfirmButton(false); // Enable the confirm button
     }
 
     displaySavedWords(); // Update the display
     highlightSelectedWords(); // Change the color of selected words
 }
+
+// Function to enable or disable the confirm button
+function disableConfirmButton(isDisabled) {
+    const confirmButton = document.getElementById('confirm-btn');
+    if (isDisabled) {
+        confirmButton.disabled = true;
+        confirmButton.style.backgroundColor = '#ccc'; // Set greyish color when disabled
+        confirmButton.style.cursor = 'not-allowed';  // Change cursor to show it's disabled
+    } else {
+        confirmButton.disabled = false;
+        confirmButton.style.backgroundColor = '#007BFF'; // Original button color when enabled
+        confirmButton.style.cursor = 'pointer';  // Normal pointer cursor when enabled
+    }
+}
+
 
 // Function to highlight selected words by turning their buttons blue
 function highlightSelectedWords() {
