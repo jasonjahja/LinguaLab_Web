@@ -30,12 +30,9 @@ let words = [
 
 let savedWords = [];
 
-// Function to create word buttons
 function createWordButtons() {
     const wordListDiv = document.getElementById('word-list');
-    wordListDiv.innerHTML = ''; // Clear the word list
-
-    // Create buttons for each word in the words array
+    wordListDiv.innerHTML = '';
     words.forEach(({ word, definition }) => 
         wordListDiv.innerHTML += 
         `<div class="word-btn" data-word="${word}" onclick="saveWord('${word}')">
@@ -47,60 +44,52 @@ function createWordButtons() {
     );
 }
 
-// Function to save the clicked word
 function saveWord(word) {
-    // Check if the word is already in the savedWords array
     if (!savedWords.includes(word)) {
-        savedWords.unshift(word); // Add the word to the beginning of the array
     } else {
         removeElement(savedWords, word);
     }
 
-    // Ensure only 3 words are saved
     if (savedWords.length > 1) {
-        // Display a notification if more than 3 words are selected
         document.getElementById('notification').innerText = '* You have selected more than 1 word.';
-        disableConfirmButton(true); // Disable the confirm button
+        disableConfirmButton(true); 
     } else {
-        // Clear the notification if 3 or fewer words are selected
         document.getElementById('notification').innerText = '';
-        disableConfirmButton(false); // Enable the confirm button
+        disableConfirmButton(false); 
     }
 
-    displaySavedWords(); // Update the display
-    highlightSelectedWords(); // Change the color of selected words
+    displaySavedWords(); 
+    highlightSelectedWords();
 }
 
-// Function to enable or disable the confirm button
 function disableConfirmButton(isDisabled) {
     const confirmButton = document.getElementById('confirm-btn');
     if (isDisabled) {
         confirmButton.disabled = true;
-        confirmButton.style.backgroundColor = '#ccc'; // Set greyish color when disabled
-        confirmButton.style.cursor = 'not-allowed';  // Change cursor to show it's disabled
-        confirmButton.onclick = (e) => e.preventDefault(); // Prevent click event from redirecting
+        confirmButton.style.backgroundColor = '#ccc'; 
+        confirmButton.style.cursor = 'not-allowed';
+        confirmButton.onclick = (e) => e.preventDefault(); 
     } else {
         confirmButton.disabled = false;
-        confirmButton.style.backgroundColor = '#007BFF'; // Original button color when enabled
-        confirmButton.style.cursor = 'pointer';  // Normal pointer cursor when enabled
-        confirmButton.onclick = null; // Reset any previously set onclick event
+        confirmButton.style.backgroundColor = '#007BFF'; 
+        confirmButton.style.cursor = 'pointer'; 
+        confirmButton.onclick = null; 
     }
 }
 
 
-// Function to highlight selected words by turning their buttons blue
 function highlightSelectedWords() {
-    const buttons = document.querySelectorAll('.word-btn'); // Get all word buttons
+    const buttons = document.querySelectorAll('.word-btn');
 
-    // Loop through each button and change its color if it's in savedWords
+    
     buttons.forEach(button => {
-        const word = button.getAttribute('data-word'); // Get the word from the data-word attribute
+        const word = button.getAttribute('data-word');
         if (savedWords.includes(word)) {
-            button.style.backgroundColor = 'blue';  // Change background color to blue
-            button.style.color = 'white';  // Change text color to white
+            button.style.backgroundColor = 'blue';  
+            button.style.color = 'white'; 
         } else {
-            button.style.backgroundColor = ''; // Reset to default background color
-            button.style.color = '';  // Reset to default text color
+            button.style.backgroundColor = ''; 
+            button.style.color = ''; 
         }
     });
 }
@@ -114,21 +103,19 @@ function removeElement(array, wordToRemove) {
     return array;
 }
 
-// Function to display the saved words
+
 function displaySavedWords() {
     const savedWordsDiv = document.getElementById('saved-words');
     savedWordsDiv.innerHTML = "Saved words: " + savedWords.join(', ');
 }
 
-// Function to save selected words and update sidebar
+
 function confirmSelection() {
-    // Update the sidebar with the saved words
     const sidebar = document.getElementById('sidebar-saved-words');
     if (sidebar) {
         sidebar.innerHTML = 'Selected words: ' + savedWords.join(', ');
     }
 
-    // Redirect to words.html (you can replace with any action you want)
     window.location.href = 'word.html';
 }
 
@@ -166,10 +153,9 @@ const courses = [
 ];
 
 
-// Function to create word buttons
 function createCourseCards() {
     const courseListDiv = document.getElementById('card-container');
-    courseListDiv.innerHTML = ''; // Clear the word list
+    courseListDiv.innerHTML = '';
 
     courses.forEach(({ thumbnail, title, description, link }, index) => 
         courseListDiv.innerHTML += 
@@ -256,11 +242,10 @@ function renderLevel(levelIndex) {
 
 function updateProgressBar(levelIndex) {
     const progressBar = document.getElementById('progress');
-    const progressPercent = (levelIndex / quizData.length) * 100; // Calculate percentage
-    progressBar.style.width = progressPercent + '%'; // Update progress bar width
+    const progressPercent = (levelIndex / quizData.length) * 100; 
+    progressBar.style.width = progressPercent + '%'; 
 }
 
-// Drag and Drop Functions
 function allowDrop(event) {
     event.preventDefault();
 }
@@ -274,16 +259,13 @@ function drop(event) {
     const data = event.dataTransfer.getData("text");
     const draggedElement = document.getElementById(data);
 
-    // Add dragged word into the drop box
     const dropBox = document.getElementById('drop-box');
     dropBox.innerText = draggedElement.innerText;
-    dropBox.style.borderColor = '#28a745';  // Change border color on drop
+    dropBox.style.borderColor = '#28a745'; 
 
-    // Modify the font size and other CSS properties
-    dropBox.style.fontSize = '18px';         // Change the font size
+    dropBox.style.fontSize = '18px'; 
     dropBox.style.padding = 'auto';
 
-    // Clear notification
     document.getElementById('notification-course').style.display = 'none';
 }
 
@@ -294,36 +276,34 @@ function checkAnswer(levelIndex) {
     const notification = document.getElementById('notification-course');
     
     if (answer === '') {
-        notification.className = 'warning'; // Apply warning style
+        notification.className = 'warning'; 
         notification.style.display = 'block';
         notification.innerText = 'Please drag a word into the box!';
     } else {
         if (answer === correctAnswer) {
-            notification.className = 'correct'; // Apply correct style
+            notification.className = 'correct'; 
             notification.style.display = 'block';
             notification.innerText = 'Correct Answer!';
             userAnswers.push({ level: levelIndex + 1, correct: true, answer: answer });
         } else {
-            notification.className = 'incorrect'; // Apply incorrect style
+            notification.className = 'incorrect';
             notification.style.display = 'block';
             notification.innerText = `Wrong Answer. The correct answer was: ${correctAnswer}`;
             userAnswers.push({ level: levelIndex + 1, correct: false, answer: answer });
         }
-        disableDragAndDrop();  // Disable drag-and-drop once the answer is confirmed
-        document.querySelector('.cta-btn-course').style.display = 'none'; // Hide confirm button
-        showNextLevelButton(levelIndex + 1);  // Show next level button
+        disableDragAndDrop(); 
+        document.querySelector('.cta-btn-course').style.display = 'none'; 
+        showNextLevelButton(levelIndex + 1); 
         updateProgressBar(levelIndex+1);
     }
 }
 
 function disableDragAndDrop() {
-    // Disable the drag-and-drop for all word buttons
     document.querySelectorAll('.course-option-btn').forEach(button => {
-        button.setAttribute('draggable', 'false');  // Disable draggable attribute
+        button.setAttribute('draggable', 'false');  
         button.classList.add('disabled');
     });
 
-    // Disable the drop area by removing the event listeners
     const dropBox = document.getElementById('drop-box');
     dropBox.ondragover = null;
     dropBox.ondrop = null;
@@ -363,7 +343,6 @@ function showResults() {
     `;
 }
 
-// Show the details of the selected result
 function showDetails(index) {
     const result = userAnswers[index];
     const resultDetails = document.getElementById('result-details');
@@ -377,28 +356,24 @@ function showDetails(index) {
     `;
 }
 
-// Retake the quiz
 function retakeQuiz() {
     currentLevel = 0;
-    userAnswers = []; // Reset answers
-    renderLevel(0); // Start over from the first level
-    updateProgressBar(0); // Reset progress bar
+    userAnswers = []; 
+    renderLevel(0); 
+    updateProgressBar(0); 
 }
 
 
 window.onload = () => {
-    // Check if word list container exists before calling createWordButtons
     if (document.getElementById('word-list')) {
         createWordButtons();
     }
 
-    // Check if course list container exists before calling createCourseCards
     if (document.getElementById('card-container')) {
         createCourseCards();
     }
 
-    // Check if quiz container exists before calling renderLevel
     if (document.getElementById('quiz-container')) {
-        renderLevel(0); // Start with the first level
+        renderLevel(0); 
     }
 };

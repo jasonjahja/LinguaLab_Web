@@ -1001,26 +1001,26 @@ footer {
 }
 
 #notification-course.correct {
-    background-color: #e6f5e6; /* Soft green background for correct */
-    color: #28a745; /* Dark green for correct text */
-    border: 2px solid #28a745; /* Green border for correct */
+    background-color: #e6f5e6; 
+    color: #28a745;
+    border: 2px solid #28a745; 
 }
 
 #notification-course.incorrect {
-    background-color: #f8d7da; /* Soft red background for incorrect */
-    color: #dc3545; /* Dark red for incorrect text */
-    border: 2px solid #dc3545; /* Red border for incorrect */
+    background-color: #f8d7da; 
+    color: #dc3545; 
+    border: 2px solid #dc3545; 
 }
 
 #notification-course.warning {
-    background-color: #fff3cd; /* Light yellow for warning (no answer) */
-    color: #856404; /* Dark brown for warning text */
-    border: 2px solid #856404; /* Brown border for warning */
+    background-color: #fff3cd;
+    color: #856404;
+    border: 2px solid #856404; 
 }
 
 
-.quiz-level { display: none; } /* Hide all levels by default */
-.active { display: block; }    /* Show active level */
+.quiz-level { display: none; } 
+.active { display: block; }   
 
 .results-container {
     display: flex;
