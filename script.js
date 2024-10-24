@@ -1,47 +1,11 @@
-// // JavaScript for the Word Selection and Button Functionality
-
-// // Select all word buttons
-// const wordButtons = document.querySelectorAll('.word-btn');
-// let selectedWords = [];
-
-// // Toggle the active state of the word buttons
-// wordButtons.forEach(button => {
-//     button.addEventListener('click', () => {
-//         const word = button.textContent.trim();
-        
-//         if (button.classList.contains('active')) {
-//             button.classList.remove('active');
-//             selectedWords = selectedWords.filter(selectedWord => selectedWord !== word);
-//         } else {
-//             button.classList.add('active');
-//             selectedWords.push(word);
-//         }
-//     });
-// });
-
-// // Confirm button action
-// const confirmBtn = document.getElementById('confirm-btn');
-// confirmBtn.addEventListener('click', () => {
-//     if (selectedWords.length >= 3) {
-//         alert('You selected the following words: ' + selectedWords.join(', '));
-//     } else {
-//         alert('Please select at least 3 words to continue.');
-//     }
-// });
-
-// // Redirect from login button (assuming there is a login button with class .login-btn)
-// const loginBtn = document.querySelector('.login-btn');
-// if (loginBtn) {
-//     loginBtn.addEventListener('click', () => {
-//         window.location.href = 'words.html';
-//     });
-// }
-
-// function redirectToDefinitionPage(word) {
-//     // Example of redirecting to a new page based on the word clicked
-//     // You can replace the URL below with the actual URL you want to redirect to.
-//     window.location.href = `/dictionary/${word}`;
-// }
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+    } else {
+        sidebar.style.width = "250px";
+    }
+}
 
 let words = [
     { word: 'Punctual', definition: 'Happening or doing something at the agreed or proper time.' },
@@ -207,17 +171,6 @@ function createCourseCards() {
 
     courses.forEach(({ thumbnail, title, description, link }, index) => 
         courseListDiv.innerHTML += 
-        // `<div class="card" onclick="openModal(${index})"> 
-        //     <div class="card-thumbnail">
-        //         <img src="${thumbnail}" alt="${title} Thumbnail">
-        //     </div>
-        //     <div class="card-content">
-        //         <h3>${title}</h3>
-        //         <p>${description}</p>
-        //     </div>
-        // </div>`
-
-
         `<div class="card"> 
             <a href=${link}>
                 <div class="card-thumbnail">
@@ -231,43 +184,6 @@ function createCourseCards() {
         </div>`
     );
 }
-
-// Open modal with course details
-// function openModal(index) {
-//     const modal = document.getElementById('course-modal');
-//     const selectedCourse = courses[index];
-
-//     // Set modal content
-//     document.getElementById('modal-thumbnail').src = selectedCourse.thumbnail;
-//     document.getElementById('modal-title').innerText = selectedCourse.title;
-//     document.getElementById('modal-description').innerText = selectedCourse.description;
-    
-//     // Set button text and link
-//     const modalBtn = document.getElementById('modal-btn');
-//     modalBtn.innerHTML = 'Go to Course'; // Text inside the button
-//     modalBtn.onclick = function() {
-//         window.location.href = selectedCourse.link; // Redirect to course link when clicked
-//     };
-
-//     // Show modal
-//     modal.style.display = 'block';
-// }
-
-// // Close the modal when user clicks outside or on close button
-// function closeModal() {
-//     document.getElementById('course-modal').style.display = 'none';
-// }
-
-// // Close modal if clicking outside of it
-// window.onclick = function(event) {
-//     const modal = document.getElementById('course-modal');
-//     if (event.target === modal) {
-//         closeModal();
-//     }
-// }
-
-// // Close modal when clicking the close button
-// document.querySelector('.close-btn').onclick = closeModal;
 
 const quizData = [
     {
