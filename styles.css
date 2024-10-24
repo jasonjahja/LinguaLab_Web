@@ -37,7 +37,7 @@ p {
 }
 
 .home-page, .word-page {
-    padding-top: 12vw;
+    padding-top: 11vw;
 }
 
 .course-page {
@@ -390,11 +390,12 @@ footer {
 .word-btn {
     position: relative; /* To position the dropdown below the button */
     padding: 8px 40px;
-    background-color: #fff;
-    border: 2px solid #ccc;
+    background-color: transparent;
+    border: 2px solid #007BFF;
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
 }
 
 .word-btn:hover {
@@ -403,15 +404,10 @@ footer {
     border-color: #1e90ff;
 }
 
-.word-btn:active {
-    background-color: #104e8b; /* Darker blue when pressed */
-    border-color: #104e8b;
-}
-
 .word-btn.active {
-    background-color: #1e90ff;
+    background-color: #007BFF;
     color: white;
-    border-color: #1e90ff;
+    border-color: #007BFF;
 }
 
 /* Dropdown for the word definition */
@@ -465,7 +461,13 @@ footer {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     background-color: #fff;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .card-thumbnail img {
@@ -632,9 +634,9 @@ footer {
     background-color: #e0e0e0;
     height: 1vw;
     width: 80%;
-    margin: 20px auto;
+    margin: 3vw auto;
     border-radius: 10px;
-    margin-bottom: 5vw;
+    margin-bottom: 4vw;
 }
 
 .progress {
@@ -659,13 +661,13 @@ footer {
 }
 
 .answer-section {
-    margin-bottom: 30px;
+    margin: 2vw 0 4vw 0;
     font-size: 22px;
     text-align: center;
 }
 
 .drop-box {
-    width: 130px;
+    width: 180px;
     height: 40px;
     border: 2px dashed #007BFF;
     display: inline-block;
@@ -688,6 +690,7 @@ footer {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 1.5vw;
 }
 
 .course-option-btn:hover {
@@ -698,10 +701,10 @@ footer {
 
 /* Disable hover effect when buttons are disabled */
 .course-option-btn.disabled {
-    cursor: default;  /* Show a disabled cursor */
-    background-color: gray; /* Use the background color set in JS */
-    color: white;          /* Maintain the color when disabled */
-    box-shadow: none;      /* Remove the shadow effect */
+    cursor: default;
+    background-color: gray;
+    color: white;
+    box-shadow: none;
 }
 
 /* Word Buttons */
@@ -712,15 +715,45 @@ footer {
     margin-bottom: 30px;
 }
 
-/* Notification Styling */
+/* Disable hover effect when buttons are disabled */
+.course-option-btn.disabled {
+    cursor: default;
+    background-color: #d3d3d3; /* Soft gray for disabled state */
+    color: #808080; /* Lighter gray text */
+    box-shadow: none;
+}
+
+/* Notification Box Styling */
 #notification-course {
-    margin-top: 4vw;
-    padding: 2vw 6vw;
+    margin: 2.5vw auto;
+    width: 80%;
+    padding: 1vw 4vw;
     font-size: 18px;
     font-weight: bold;
-    background-color: blue;
+    border-radius: 10px; /* Rounded corners */
+    background-color: #f0f4f8; /* Light blue background */
+    color: #333; /* Default text color */
     display: none;
 }
+
+#notification-course.correct {
+    background-color: #e6f5e6; /* Soft green background for correct */
+    color: #28a745; /* Dark green for correct text */
+    border: 2px solid #28a745; /* Green border for correct */
+}
+
+#notification-course.incorrect {
+    background-color: #f8d7da; /* Soft red background for incorrect */
+    color: #dc3545; /* Dark red for incorrect text */
+    border: 2px solid #dc3545; /* Red border for incorrect */
+}
+
+#notification-course.warning {
+    background-color: #fff3cd; /* Light yellow for warning (no answer) */
+    color: #856404; /* Dark brown for warning text */
+    border: 2px solid #856404; /* Brown border for warning */
+}
+
 
 .quiz-level { display: none; } /* Hide all levels by default */
 .active { display: block; }    /* Show active level */

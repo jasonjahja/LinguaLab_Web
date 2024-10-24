@@ -47,8 +47,23 @@ let words = [
     { word: 'Punctual', definition: 'Happening or doing something at the agreed or proper time.' },
     { word: 'Aberration', definition: 'A departure from what is normal, usual, or expected.' },
     { word: 'Perseverance', definition: 'Persistence in doing something despite difficulty or delay in achieving success.' },
-    { word: 'Gratitude', definition: 'The quality of being thankful; readiness to show appreciation.' }
+    { word: 'Gratitude', definition: 'The quality of being thankful; readiness to show appreciation.' },
+    { word: 'Zealous', definition: 'Having or showing great energy or enthusiasm in pursuit of a cause.' },
+    { word: 'Resilience', definition: 'The capacity to recover quickly from difficulties.' },
+    { word: 'Ephemeral', definition: 'Lasting for a very short time.' },
+    { word: 'Lethargic', definition: 'Affected by lethargy; sluggish and apathetic.' },
+    { word: 'Indelible', definition: 'Making marks that cannot be removed; not able to be forgotten.' },
+    { word: 'Equivocal', definition: 'Open to more than one interpretation; ambiguous.' },
+    { word: 'Magnanimous', definition: 'Generous or forgiving, especially towards a rival or less powerful person.' },
+    { word: 'Sagacious', definition: 'Having or showing keen mental discernment and good judgment.' },
+    { word: 'Surreptitious', definition: 'Kept secret, especially because it would not be approved of.' },
+    { word: 'Loquacious', definition: 'Tending to talk a great deal; talkative.' },
+    { word: 'Obfuscate', definition: 'To deliberately make something unclear or obscure.' },
+    { word: 'Tenacity', definition: 'The quality of being very determined; persistence.' },
+    { word: 'Ubiquitous', definition: 'Present, appearing, or found everywhere.' }
+    
 ];
+
 let savedWords = [];
 
 // Function to create word buttons
@@ -134,14 +149,39 @@ function confirmSelection() {
     window.location.href = 'word.html';
 }
 
-let courses = [
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
-    { thumbnail: 'assets/8609147_5836-removebg-preview.png', title: 'Book a Flight', description: 'Try booking a flight from Indonesia to Singapore',  link: 'course.html'},
+const courses = [
+    { 
+        thumbnail: 'assets/8609147_5836-removebg-preview.png', 
+        title: 'Book a Flight to a Tourist Destination', 
+        description: 'Learn how to book flights to popular tourist destinations, with special tips on selecting affordable tickets.',  
+        link: 'course.html'
+    },
+    { 
+        thumbnail: 'assets/8609147_5836-removebg-preview.png', 
+        title: 'Hotel Booking for Business Trips', 
+        description: 'Explore how to book the right hotels for business trips, focusing on locations, amenities, and corporate discounts.',  
+        link: 'course.html'
+    },
+    { 
+        thumbnail: 'assets/8609147_5836-removebg-preview.png', 
+        title: 'Renting a Car: A Complete Guide', 
+        description: 'Learn how to rent a car efficiently, comparing prices, insurance options, and tips on international rentals.',  
+        link: 'course.html'
+    },
+    { 
+        thumbnail: 'assets/8609147_5836-removebg-preview.png', 
+        title: 'Navigating Travel Insurance', 
+        description: 'Understand the different types of travel insurance and how to choose the best coverage for your trip.',  
+        link: 'course.html'
+    },
+    { 
+        thumbnail: 'assets/8609147_5836-removebg-preview.png', 
+        title: 'Booking Guided Tours', 
+        description: 'Find out how to book guided tours for your vacation, including tips on selecting the best tour operators.',  
+        link: 'course.html'
+    }
 ];
+
 
 // Function to create word buttons
 function createCourseCards() {
@@ -215,32 +255,39 @@ function createCourseCards() {
 const quizData = [
     {
         level: 1,
-        question: "tes",
-        answer: "Usage Examples Usage _____ Examples Usage Examples",
-        options: ["Punctual", "Aberration", "Perseverance", "Gratitude"],
-        correctAnswer: "Punctual"
+        question: "When booking a flight, what does 'departure' mean?",
+        answer: "The flight _____ at 3:00 PM from Jakarta.",
+        options: ["leaves", "arrives", "cancels", "delays"],
+        correctAnswer: "leaves"
     },
     {
         level: 2,
-        question: "tes",
-        answer: "How do you say _____ in English?",
-        options: ["Apple", "Orange", "Banana", "Pear"],
-        correctAnswer: "Banana"
+        question: "How do you ask for a seat near the window?",
+        answer: "Can I get a seat _____ the window, please?",
+        options: ["next to", "behind", "in front of", "beside"],
+        correctAnswer: "next to"
     },
-    // {
-    //     level: 3,
-    //     question: "tes",
-    //     answer: "aaaaaHow do you say _____ in English?",
-    //     options: ["Apple", "Orange", "Banana", "Pear"],
-    //     correctAnswer: "Banana"
-    // },
-    // {
-    //     level: 4,
-    //     question: "tes",
-    //     answer: "How ffffffdo you say _____ in English?",
-    //     options: ["Apple", "Orange", "Banana", "Pear"],
-    //     correctAnswer: "Banana"
-    // },
+    {
+        level: 3,
+        question: "What is the word for the place where you wait before boarding?",
+        answer: "Passengers wait at the _____ before boarding the plane.",
+        options: ["departure gate", "check-in desk", "luggage claim", "immigration"],
+        correctAnswer: "departure gate"
+    },
+    {
+        level: 4,
+        question: "What is the correct phrase for asking about flight availability?",
+        answer: "Are there any _____ for flights to Singapore tomorrow?",
+        options: ["available seats", "open bags", "extra delays", "free cancellations"],
+        correctAnswer: "available seats"
+    },
+    {
+        level: 5,
+        question: "How do you request an upgrade to first class?",
+        answer: "I would like to _____ my ticket to first class.",
+        options: ["upgrade", "downgrade", "cancel", "delay"],
+        correctAnswer: "upgrade"
+    }
 ];
 
 let currentLevel = 0;
@@ -312,19 +359,18 @@ function checkAnswer(levelIndex) {
     const notification = document.getElementById('notification-course');
     
     if (answer === '') {
+        notification.className = 'warning'; // Apply warning style
         notification.style.display = 'block';
-        notification.style.color = 'red';
         notification.innerText = 'Please drag a word into the box!';
-    }
-    else {
+    } else {
         if (answer === correctAnswer) {
+            notification.className = 'correct'; // Apply correct style
             notification.style.display = 'block';
-            notification.style.color = 'green';
             notification.innerText = 'Correct Answer!';
-            userAnswers.push({ level: levelIndex + 1, correct: true, answer: answer});
+            userAnswers.push({ level: levelIndex + 1, correct: true, answer: answer });
         } else {
+            notification.className = 'incorrect'; // Apply incorrect style
             notification.style.display = 'block';
-            notification.style.color = 'red';
             notification.innerText = `Wrong Answer. The correct answer was: ${correctAnswer}`;
             userAnswers.push({ level: levelIndex + 1, correct: false, answer: answer });
         }
