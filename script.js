@@ -215,31 +215,36 @@ function createCourseCards() {
 const quizData = [
     {
         level: 1,
-        question: "Usage Examples Usage _____ Examples Usage Examples",
+        question: "tes",
+        answer: "Usage Examples Usage _____ Examples Usage Examples",
         options: ["Punctual", "Aberration", "Perseverance", "Gratitude"],
         correctAnswer: "Punctual"
     },
     {
         level: 2,
-        question: "How do you say _____ in English?",
+        question: "tes",
+        answer: "How do you say _____ in English?",
         options: ["Apple", "Orange", "Banana", "Pear"],
         correctAnswer: "Banana"
     },
-    {
-        level: 3,
-        question: "aaaaaHow do you say _____ in English?",
-        options: ["Apple", "Orange", "Banana", "Pear"],
-        correctAnswer: "Banana"
-    },
-    {
-        level: 4,
-        question: "How ffffffdo you say _____ in English?",
-        options: ["Apple", "Orange", "Banana", "Pear"],
-        correctAnswer: "Banana"
-    },
+    // {
+    //     level: 3,
+    //     question: "tes",
+    //     answer: "aaaaaHow do you say _____ in English?",
+    //     options: ["Apple", "Orange", "Banana", "Pear"],
+    //     correctAnswer: "Banana"
+    // },
+    // {
+    //     level: 4,
+    //     question: "tes",
+    //     answer: "How ffffffdo you say _____ in English?",
+    //     options: ["Apple", "Orange", "Banana", "Pear"],
+    //     correctAnswer: "Banana"
+    // },
 ];
 
 let currentLevel = 0;
+let userAnswers = [];
 
 function renderLevel(levelIndex) {
     const levelData = quizData[levelIndex];
@@ -249,7 +254,10 @@ function renderLevel(levelIndex) {
     quizContainer.innerHTML = `
         <div id="level${levelData.level}" class="quiz-level active">
             <div class="question-section">
-                <p>${levelData.question.replace("_____", '<span class="drop-box" id="drop-box" ondrop="drop(event)" ondragover="allowDrop(event)"></span>')}</p>
+                <p>${levelData.question}</p>
+            </div>
+            <div class="answer-section">
+                <p>${levelData.answer.replace("_____", '<span class="drop-box" id="drop-box" ondrop="drop(event)" ondragover="allowDrop(event)"></span>')}</p>
             </div>
             <div class="word-options">
                 ${levelData.options.map((option, index) => `
@@ -297,27 +305,28 @@ function drop(event) {
     document.getElementById('notification-course').style.display = 'none';
 }
 
-// Check Answer Function
 function checkAnswer(levelIndex) {
     const dropBox = document.getElementById('drop-box');
     const answer = dropBox.innerText;
     const correctAnswer = quizData[levelIndex].correctAnswer;
     const notification = document.getElementById('notification-course');
-
-    // Show notification and disable drag-and-drop after confirming
+    
     if (answer === '') {
         notification.style.display = 'block';
         notification.style.color = 'red';
         notification.innerText = 'Please drag a word into the box!';
-    } else {
+    }
+    else {
         if (answer === correctAnswer) {
             notification.style.display = 'block';
             notification.style.color = 'green';
-            notification.innerText = 'Correct Answer. Good Job!';
+            notification.innerText = 'Correct Answer!';
+            userAnswers.push({ level: levelIndex + 1, correct: true, answer: answer});
         } else {
             notification.style.display = 'block';
             notification.style.color = 'red';
-            notification.innerText = 'Wrong Answer. Try again.';
+            notification.innerText = `Wrong Answer. The correct answer was: ${correctAnswer}`;
+            userAnswers.push({ level: levelIndex + 1, correct: false, answer: answer });
         }
         disableDragAndDrop();  // Disable drag-and-drop once the answer is confirmed
         document.querySelector('.cta-btn-course').style.display = 'none'; // Hide confirm button
@@ -344,14 +353,57 @@ function showNextLevelButton(nextLevelIndex) {
     btnDiv.innerHTML = `<button class="cta-btn-course" onclick="nextLevel(${nextLevelIndex})">Next Level</button>`;
 }
 
-// Render next level
 function nextLevel(nextLevelIndex) {
     if (nextLevelIndex < quizData.length) {
         renderLevel(nextLevelIndex);
     } else {
-        document.getElementById('quiz-container').innerHTML = '<div><h2 style="padding: 20px; color: green; font-size: 24px; text-align: center;">Congratulations! You have completed the quiz.</h2><div style="text-align: center;"><button class="cta-btn"><a href="home.html" class="cta-btn-text">Confirm</a></button></div></div>';
+        showResults();
     }
 }
+
+function showResults() {
+    const quizContainer = document.getElementById('quiz-container');
+    quizContainer.innerHTML = `
+        <h2 style="color: green; font-size: 24px; text-align: center;">Congratulations! You have completed the quiz.</h2>
+        <h2 style="color: #1e90ff; font-size: 24px; text-align: center;">Quiz Results</h2>
+        <div class="results-container">
+            ${userAnswers.map((answer, index) => `
+                <div class="result-box ${answer.correct ? 'correct' : 'incorrect'}" onclick="showDetails(${index})">
+                    <span class="level-number">Level ${answer.level}</span>
+                    <span class="result-status">${answer.correct ? 'Correct' : 'Incorrect'}</span>
+                </div>
+            `).join('')}
+        </div>
+        <div id="result-details"></div>
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="retake-btn" onclick="retakeQuiz()">Retake Quiz</button>
+            <button class="done-btn"><a href="home.html" class="done-btn-text">Go Home</a></button>
+        </div>
+    `;
+}
+
+// Show the details of the selected result
+function showDetails(index) {
+    const result = userAnswers[index];
+    const resultDetails = document.getElementById('result-details');
+    resultDetails.innerHTML = `
+        <div class="details-box">
+            <h3>Level ${result.level} - ${result.correct ? 'Correct' : 'Incorrect'}</h3>
+            <p><strong>Question:</strong> ${quizData[index].question}</p>
+            <p><strong>Your Answer:</strong> ${result.answer}</p>
+            <p><strong>Correct Answer:</strong> ${quizData[result.level - 1].correctAnswer}</p>
+        </div>
+    `;
+}
+
+// Retake the quiz
+function retakeQuiz() {
+    currentLevel = 0;
+    userAnswers = []; // Reset answers
+    renderLevel(0); // Start over from the first level
+    updateProgressBar(0); // Reset progress bar
+}
+
 
 window.onload = () => {
     // Check if word list container exists before calling createWordButtons
@@ -367,6 +419,5 @@ window.onload = () => {
     // Check if quiz container exists before calling renderLevel
     if (document.getElementById('quiz-container')) {
         renderLevel(0); // Start with the first level
-        updateProgressBar(0);
     }
 };
