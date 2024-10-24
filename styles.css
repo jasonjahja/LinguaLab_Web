@@ -534,7 +534,7 @@ footer {
     z-index: 1000;
 } */
 
-.modal-content {
+/* .modal-content {
     margin: auto;
     margin-top: 8vw;
     background-color: white;
@@ -580,7 +580,7 @@ footer {
 .modal-btn:hover {
     background-color: #0056b3;
     transform: scale(1.05);
-} */
+} */ */
 
 /* Close button styles */
 .close-btn {
@@ -592,8 +592,25 @@ footer {
     cursor: pointer;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* word.html */
-.word-page {
+/* .word-page {
     padding: 12vw 10vw 6vw;
 }
 
@@ -649,7 +666,67 @@ footer {
 
 .btn-back:hover {
     background-color: #0073e6;
+} */
+
+
+
+.word-page {
+    padding: 12vw 9vw;
 }
+
+.word-page h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+.word-details {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.pronunciation {
+    font-size: 18px;
+    color: gray;
+}
+
+.part-of-speech {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.definition {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.example {
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.synonyms {
+    margin-top: 20px;
+    margin-bottom: 4vw;
+}
+
+
+
+
+
+
+
+
+
+
 
 /* Course Page */
 .course-page {
