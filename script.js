@@ -30,9 +30,12 @@ let words = [
 
 let savedWords = [];
 
+// Function to create word buttons
 function createWordButtons() {
     const wordListDiv = document.getElementById('word-list');
-    wordListDiv.innerHTML = '';
+    wordListDiv.innerHTML = ''; // Clear the word list
+
+    // Create buttons for each word in the words array
     words.forEach(({ word, definition }) => 
         wordListDiv.innerHTML += 
         `<div class="word-btn" data-word="${word}" onclick="saveWord('${word}')">
@@ -44,8 +47,10 @@ function createWordButtons() {
     );
 }
 
+// Function to save the clicked word
 function saveWord(word) {
     if (!savedWords.includes(word)) {
+        savedWords.unshift(word); // Add the word to the beginning of the array
     } else {
         removeElement(savedWords, word);
     }
@@ -153,9 +158,10 @@ const courses = [
 ];
 
 
+// Function to create word buttons
 function createCourseCards() {
     const courseListDiv = document.getElementById('card-container');
-    courseListDiv.innerHTML = '';
+    courseListDiv.innerHTML = ''; // Clear the word list
 
     courses.forEach(({ thumbnail, title, description, link }, index) => 
         courseListDiv.innerHTML += 
@@ -242,10 +248,11 @@ function renderLevel(levelIndex) {
 
 function updateProgressBar(levelIndex) {
     const progressBar = document.getElementById('progress');
-    const progressPercent = (levelIndex / quizData.length) * 100; 
-    progressBar.style.width = progressPercent + '%'; 
+    const progressPercent = (levelIndex / quizData.length) * 100; // Calculate percentage
+    progressBar.style.width = progressPercent + '%'; // Update progress bar width
 }
 
+// Drag and Drop Functions
 function allowDrop(event) {
     event.preventDefault();
 }
@@ -259,13 +266,16 @@ function drop(event) {
     const data = event.dataTransfer.getData("text");
     const draggedElement = document.getElementById(data);
 
+    // Add dragged word into the drop box
     const dropBox = document.getElementById('drop-box');
     dropBox.innerText = draggedElement.innerText;
-    dropBox.style.borderColor = '#28a745'; 
+    dropBox.style.borderColor = '#28a745';  // Change border color on drop
 
-    dropBox.style.fontSize = '18px'; 
+    // Modify the font size and other CSS properties
+    dropBox.style.fontSize = '18px';         // Change the font size
     dropBox.style.padding = 'auto';
 
+    // Clear notification
     document.getElementById('notification-course').style.display = 'none';
 }
 
@@ -276,34 +286,36 @@ function checkAnswer(levelIndex) {
     const notification = document.getElementById('notification-course');
     
     if (answer === '') {
-        notification.className = 'warning'; 
+        notification.className = 'warning'; // Apply warning style
         notification.style.display = 'block';
         notification.innerText = 'Please drag a word into the box!';
     } else {
         if (answer === correctAnswer) {
-            notification.className = 'correct'; 
+            notification.className = 'correct'; // Apply correct style
             notification.style.display = 'block';
             notification.innerText = 'Correct Answer!';
             userAnswers.push({ level: levelIndex + 1, correct: true, answer: answer });
         } else {
-            notification.className = 'incorrect';
+            notification.className = 'incorrect'; // Apply incorrect style
             notification.style.display = 'block';
             notification.innerText = `Wrong Answer. The correct answer was: ${correctAnswer}`;
             userAnswers.push({ level: levelIndex + 1, correct: false, answer: answer });
         }
-        disableDragAndDrop(); 
-        document.querySelector('.cta-btn-course').style.display = 'none'; 
-        showNextLevelButton(levelIndex + 1); 
+        disableDragAndDrop();  // Disable drag-and-drop once the answer is confirmed
+        document.querySelector('.cta-btn-course').style.display = 'none'; // Hide confirm button
+        showNextLevelButton(levelIndex + 1);  // Show next level button
         updateProgressBar(levelIndex+1);
     }
 }
 
 function disableDragAndDrop() {
+    // Disable the drag-and-drop for all word buttons
     document.querySelectorAll('.course-option-btn').forEach(button => {
-        button.setAttribute('draggable', 'false');  
+        button.setAttribute('draggable', 'false');  // Disable draggable attribute
         button.classList.add('disabled');
     });
 
+    // Disable the drop area by removing the event listeners
     const dropBox = document.getElementById('drop-box');
     dropBox.ondragover = null;
     dropBox.ondrop = null;
@@ -343,6 +355,7 @@ function showResults() {
     `;
 }
 
+// Show the details of the selected result
 function showDetails(index) {
     const result = userAnswers[index];
     const resultDetails = document.getElementById('result-details');
@@ -356,24 +369,28 @@ function showDetails(index) {
     `;
 }
 
+// Retake the quiz
 function retakeQuiz() {
     currentLevel = 0;
-    userAnswers = []; 
-    renderLevel(0); 
-    updateProgressBar(0); 
+    userAnswers = []; // Reset answers
+    renderLevel(0); // Start over from the first level
+    updateProgressBar(0); // Reset progress bar
 }
 
 
 window.onload = () => {
+    // Check if word list container exists before calling createWordButtons
     if (document.getElementById('word-list')) {
         createWordButtons();
     }
 
+    // Check if course list container exists before calling createCourseCards
     if (document.getElementById('card-container')) {
         createCourseCards();
     }
 
+    // Check if quiz container exists before calling renderLevel
     if (document.getElementById('quiz-container')) {
-        renderLevel(0); 
+        renderLevel(0); // Start with the first level
     }
 };
