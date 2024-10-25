@@ -55,8 +55,8 @@ function saveWord(word) {
         removeElement(savedWords, word);
     }
 
-    if (savedWords.length > 1) {
-        document.getElementById('notification').innerText = '* You have selected more than 1 word.';
+    if (savedWords.length != 1) {
+        document.getElementById('notification').innerText = '* You must select 1 word.';
         disableConfirmButton(true); 
     } else {
         document.getElementById('notification').innerText = '';
@@ -379,6 +379,9 @@ function retakeQuiz() {
 
 
 window.onload = () => {
+    disableConfirmButton(true);
+    document.getElementById('notification').innerText = '* You must select 1 word.';
+
     // Check if word list container exists before calling createWordButtons
     if (document.getElementById('word-list')) {
         createWordButtons();
