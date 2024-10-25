@@ -75,6 +75,7 @@ p {
     margin-right: 3vw;
 }
 
+/* Default styles */
 .navbar .login-btn {
     margin-left: auto;
     padding: 8px 60px;
@@ -82,7 +83,25 @@ p {
     color: white;
     font-weight: bold;
     border-radius: 20px;
+    transition: padding 0.3s, font-size 0.3s;
 }
+
+/* Tablet screen (max-width: 768px) */
+@media (max-width: 768px) {
+    .navbar .login-btn {
+        padding: 8px 40px; /* Reduce padding */
+        font-size: 0.9em; /* Slightly smaller font */
+    }
+}
+
+/* Mobile screen (max-width: 480px) */
+@media (max-width: 480px) {
+    .navbar .login-btn {
+        padding: 6px 20px; /* Reduce padding further */
+        font-size: 0.8em;  /* Even smaller font */
+    }
+}
+
 
 .navbar .profile-btn {
     padding: 15px 20px;
@@ -200,8 +219,6 @@ p {
         font-size: 1.8em;
     }
 }
-
-
 
 .login-page, .signup-page {
     font-family: 'Nunito', sans-serif;
@@ -363,8 +380,31 @@ p {
     align-items: center;
     justify-content: center;
     margin-bottom: 10vw;
-    /* flex-wrap: wrap; */
 }
+
+.feature-section.reversed .feature-texts2 {
+    order: 1; /* Text appears first on desktop */
+}
+
+.feature-section.reversed .feature-image {
+    order: 2; /* Image appears second on desktop */
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .feature-section {
+        flex-direction: column;
+    }
+
+    .feature-section.reversed .feature-image {
+        order: 1; /* Image appears first on mobile */
+    }
+
+    .feature-section.reversed .feature-texts2 {
+        order: 2; /* Text appears second on mobile */
+    }
+}
+
 
 .feature-texts {
     padding: 0 0 0 15vw;
