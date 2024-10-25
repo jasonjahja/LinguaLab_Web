@@ -28,14 +28,34 @@ let words = [
     
 ];
 
+function confirmSelection() {
+    if (savedWords.length === 1) {
+        const selectedWord = savedWords[0];
+        window.location.href = `word.html?word=${encodeURIComponent(selectedWord)}`;
+    }
+}
+
+function displayWordDetails() {
+    const wordParam = new URLSearchParams(window.location.search).get('word');
+    // const wordData = words.find(w => w.word.toLowerCase() === wordParam.toLowerCase()); 
+    const wordData = words.find(w => w.word === wordParam);
+    const wordDetailsDiv = document.getElementById('word-details');
+    if (wordData) {
+        wordDetailsDiv.innerHTML = `
+            <h2>${wordData.word}</h2>
+            <p>${wordData.definition}</p>
+        `;
+    } else {
+        wordDetailsDiv.innerHTML = "<p>Word not found.</p>";
+    }
+}
+
 let savedWords = [];
 
-// Function to create word buttons
 function createWordButtons() {
     const wordListDiv = document.getElementById('word-list');
-    wordListDiv.innerHTML = ''; // Clear the word list
+    wordListDiv.innerHTML = '';
 
-    // Create buttons for each word in the words array
     words.forEach(({ word, definition }) => 
         wordListDiv.innerHTML += 
         `<div class="word-btn" data-word="${word}" onclick="saveWord('${word}')">
@@ -49,21 +69,23 @@ function createWordButtons() {
 
 // Function to save the clicked word
 function saveWord(word) {
-    if (!savedWords.includes(word)) {
-        savedWords.unshift(word); // Add the word to the beginning of the array
-    } else {
-        removeElement(savedWords, word);
-    }
+    // if (!savedWords.includes(word)) {
+    //     savedWords.unshift(word);
+    // } else {
+    //     removeElement(savedWords, word);
+    // }
 
-    if (savedWords.length != 1) {
-        document.getElementById('notification').innerText = '* You must select 1 word.';
-        disableConfirmButton(true); 
-    } else {
-        document.getElementById('notification').innerText = '';
-        disableConfirmButton(false); 
-    }
-
-    displaySavedWords(); 
+    // if (savedWords.length != 1) {
+    //     document.getElementById('notification').innerText = '* You must select 1 word.';
+    //     disableConfirmButton(true); 
+    // } else {
+    //     document.getElementById('notification').innerText = '';
+    //     disableConfirmButton(false); 
+    // }
+    // highlightSelectedWords();
+    savedWords=[word];
+    document.getElementById('notification').innerText = ''; 
+    disableConfirmButton(false);
     highlightSelectedWords();
 }
 
@@ -73,12 +95,10 @@ function disableConfirmButton(isDisabled) {
         confirmButton.disabled = true;
         confirmButton.style.backgroundColor = '#ccc'; 
         confirmButton.style.cursor = 'not-allowed';
-        confirmButton.onclick = (e) => e.preventDefault(); 
     } else {
         confirmButton.disabled = false;
         confirmButton.style.backgroundColor = '#007BFF'; 
-        confirmButton.style.cursor = 'pointer'; 
-        confirmButton.onclick = null; 
+        confirmButton.style.cursor = 'pointer';
     }
 }
 
@@ -108,20 +128,16 @@ function removeElement(array, wordToRemove) {
     return array;
 }
 
-
 function displaySavedWords() {
     const savedWordsDiv = document.getElementById('saved-words');
     savedWordsDiv.innerHTML = "Saved words: " + savedWords.join(', ');
 }
 
-
 function confirmSelection() {
-    const sidebar = document.getElementById('sidebar-saved-words');
-    if (sidebar) {
-        sidebar.innerHTML = 'Selected words: ' + savedWords.join(', ');
+    if (savedWords.length === 1) {
+        const selectedWord = savedWords[0];
+        window.location.href = `word.html?word=${encodeURIComponent(selectedWord)}`;
     }
-
-    window.location.href = 'word.html';
 }
 
 const courses = [
@@ -379,8 +395,10 @@ function retakeQuiz() {
 
 
 window.onload = () => {
-    disableConfirmButton(true);
-    document.getElementById('notification').innerText = '* You must select 1 word.';
+    if (document.getElementById('confirm-btn')) {
+        disableConfirmButton(true);
+        document.getElementById('notification').innerText = '* You must select 1 word.';
+    }
 
     // Check if word list container exists before calling createWordButtons
     if (document.getElementById('word-list')) {
@@ -391,6 +409,8 @@ window.onload = () => {
     if (document.getElementById('card-container')) {
         createCourseCards();
     }
+
+    // if (document.getElementById('word-details')) displayWordDetails();
 
     // Check if quiz container exists before calling renderLevel
     if (document.getElementById('quiz-container')) {
