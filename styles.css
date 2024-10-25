@@ -770,7 +770,7 @@ footer {
 
 .confirm-btn {
     margin-top: 2vw;
-    padding: 10px;
+    padding: 10px 230px;
     background-color: #007BFF;
     border: none;
     border-radius: 25px;
@@ -778,6 +778,10 @@ footer {
     margin: 0 auto;
     box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
     transition: background-color 0.3s, transform 0.3s;
+    color: white;
+    font-size: 1.3em;
+    font-weight: bold;
+    /* padding: 0 240px; */
 }
 
 .confirm-btn:hover {
@@ -785,12 +789,12 @@ footer {
     transform: scale(1.05);
 }
 
-.confirm-btn-text {
+/* .confirm-btn-text {
     color: white;
     font-size: 1.3em;
     font-weight: bold;
     padding: 0 240px;
-}
+} */
 
 #confirm-btn:disabled {
     background-color: #ccc; 
@@ -937,7 +941,7 @@ footer {
     background-color: #e0e0e0;
     height: 1vw;
     width: 80%;
-    margin: 3vw auto;
+    margin: 120px auto;
     border-radius: 10px;
     margin-bottom: 40px;
 }
