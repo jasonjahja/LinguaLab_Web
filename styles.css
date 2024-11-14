@@ -220,143 +220,6 @@ p {
     }
 }
 
-.login-page, .signup-page {
-    font-family: 'Nunito', sans-serif;
-    background: #e0f7ff; /* Light blue background */
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.auth-container {
-    display: flex;
-    width: 900px;
-    max-width: 100%;
-    height: 550px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.auth-left {
-    background-color: #1e90ff; /* Blue accent */
-    color: white;
-    width: 40%;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.auth-left h2 {
-    font-size: 2.2em;
-    margin-bottom: 10px;
-}
-
-.auth-right {
-    width: 60%;
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.form-container {
-    width: 100%;
-    max-width: 400px;
-}
-
-.auth-right h2 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 1.8em;
-    text-align: center;
-}
-
-.input-group {
-    margin-bottom: 10px;
-}
-
-.input-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1em;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    transition: border-color 0.3s;
-}
-
-.input-group input:focus {
-    border-color: #1e90ff;
-    outline: none;
-}
-
-.auth-btn {
-    margin-top: 1.5vw;
-    width: 100%;
-    padding: 12px;
-    background-color: #1e90ff;
-    color: white;
-    font-size: 1.2em;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.auth-btn:hover {
-    background-color: #006bb3;
-}
-
-.auth-btn-text {
-    color: white;
-    text-decoration: none;
-}
-
-.signup-redirect {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.signup-redirect a {
-    color: #1e90ff;
-    text-decoration: none;
-}
-
-.signup-redirect a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .auth-container {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .auth-left {
-        width: 100%;
-        padding: 20px;
-    }
-
-    .auth-right {
-        width: 100%;
-        padding: 20px;
-    }
-}
-
 /* Features Section */
 .features {
     padding: 80px 100px;
@@ -719,18 +582,18 @@ footer {
 }
 
 .word-btn {
-    position: relative; /* To position the dropdown below the button */
+    position: relative;
     padding: 8px 40px;
     background-color: transparent;
     border: 2px solid #007BFF;
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.15);
 }
 
 .word-btn:hover {
-    background-color: #1e90ff; /* Blue background on hover */
+    background-color: #1e90ff;
     color: white;
     border-color: #1e90ff;
 }
@@ -1385,3 +1248,9 @@ a.done-btn-text {
         font-size: 10px;
     }
 }
+
+
+
+
+
+

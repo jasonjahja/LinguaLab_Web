@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Signup - English Learning</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
 </head>
 <body>
     <main class="login-page">
@@ -21,21 +21,28 @@
             <div class="auth-right">
                 <div class="form-container">
                     <h2>Login to Your Account</h2>
-                    <form id="login-form" action="#">
+                    <form id="login-form">
                         <div class="input-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="Enter your email" required>
+                            <label for="email_login">Email</label>
+                            <input type="email" id="email_login" placeholder="Enter your email" required>
+                            <span id="email-login-error" class="error-message"></span>
                         </div>
                         <div class="input-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" placeholder="Enter your password" required>
+                            <label for="psw_login">Password</label>
+                            <div class="password-container" >
+                                <input type="password" id="psw_login" placeholder="Enter your password" required>
+                                <button type="button" id="toggle-password-login" class="toggle-btn">👁️</button>
+                            </div>
+                            <span id="psw-login-error" class="error-message"></span>
                         </div>
-                        <button type="submit" class="auth-btn"><a href="home.html" class="auth-btn-text">Login</a></button>
+                        <button type="submit" id="login-button" class="auth-btn">Login</button>
                         <p class="signup-redirect">Don't have an account? <a href="signup.html">Sign up here</a>.</p>
                     </form>
                 </div>
             </div>
         </div>
     </main>
+
+    <script type="module" src="script/auth.js"></script>
 </body>
 </html>
