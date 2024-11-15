@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Words of The Day</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="../index.html">LinguaLab</a></div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="word.html?word=Punctual">Words</a></li>
+                <li><a href="course.html">Quiz</a></li>
+            </ul>
+            <div class="profile-div">
+                <a href="profile.html" class="profile-btn">
+                    <img class="profile-img" src="../assets/default-profile.jpg" alt="Profile Image">
+                </a>    
+            </div>
+                    
+            <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+        </nav>
+        
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <a href="javascript:void(0)" class="close-btn" onclick="toggleSidebar()">&times;</a>
+            <a href="home.html">Home</a>
+            <a href="word.html?word=Punctual">Words</a>
+            <a href="course.html">Quiz</a>
+            <a href="profile.html" class="profile-btn-mobile">
+                <img class="profile-img" src="../assets/default-profile.jpg" alt="Profile Image">
+            </a>  
+        </div>
+    </header>
+
+    <main class="home-page">
+        <!-- Words of the Day Section -->
+        <section class="words-section" id="words-section">
+            <h2 style="color: #007BFF">Words of The Day</h2>
+            <h3>Choose 1 word to learn today!</h3>
+            <div class="word-list" id="word-list"></div>
+            <div id="saved-words" style="display: none;">Saved words: </div>
+            <button id="confirm-btn" class="confirm-btn" onclick="confirmSelection()">Confirm</button>
+            <div id="notification"></div>
+        </section>
+
+        <!-- <section class="word-details-section">
+            <div id="word-details"></div>
+        </section> -->
+
+        <!-- Courses Section -->
+        <section class="courses-sections" id="courses-sections">
+            <h2 style="color: #007BFF">Courses</h2>
+            <div class="courses-section">
+                <h3>Subcourses</h3>
+                <div class="card-container" id="card-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 English Virtual Lab. All rights reserved.</p>
+    </footer>
+
+    <script src="../script/words.js"></script>
+    <script type="module" src="../script/course.js"></script>
+    <!-- <script src="script/script.js"></script> -->
+</body>
+</html>
