@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     last_signup: suDate,
                 }).then(() => {
                     alert("Signup successful!");
+                    localStorage.setItem('userId', user.uid);
                     window.location.href = "home.html";
                 }).catch((error) => {
                     alert("Error creating user document: " + error.message);
@@ -127,6 +128,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     }).then(() => {
                         alert("Login successful!");
                         window.location.href = "home.html";
+                        // After successful login or signup, store the user ID
+                        localStorage.setItem('userId', user.uid);
+                        // firebase.auth().signInWithEmailAndPassword(email, password)
+                        //     .then((userCredential) => {
+                        //         const user = userCredential.user;
+                        //         localStorage.setItem('userId', user.uid); // Store userId for later access
+                        //         console.log("User ID stored:", user.uid);
+                        //         // Redirect or load quiz after login
+                        //         window.location.href = 'quiz.html';
+                        //     })
+                        //     .catch((error) => {
+                        //         console.error("Error during login:", error.message);
+                        //         alert("Login failed. Please check your credentials and try again.");
+                        //     });
+
                     }).catch((error) => {
                         alert("Login failed: " + error.message);
                     });

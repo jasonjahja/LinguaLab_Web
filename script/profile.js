@@ -131,3 +131,65 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+
+
+// Define the path to the default image
+const defaultImagePath = 'images/default-profile.png';
+
+// Get elements
+const deletePhotoButton = document.getElementById('delete-photo-button');
+const profilePic = document.getElementById('profile-pic');
+
+// Function to check if the profile picture is the default image
+function checkProfilePhoto() {
+    if (profilePic.src.includes(defaultImagePath)) {
+        deletePhotoButton.disabled = true;
+        deletePhotoButton.classList.add('disabled');
+    } else {
+        deletePhotoButton.disabled = false;
+        deletePhotoButton.classList.remove('disabled');
+    }
+}
+
+// Run check on page load
+window.onload = checkProfilePhoto;
+
+// Listen for "Edit Photo" button to upload new photo
+document.getElementById('edit-photo-button').addEventListener('click', () => {
+    // Trigger file input for uploading a new photo
+    document.getElementById('photo-input').click();
+});
+
+// Listen for file selection and update the profile picture
+document.getElementById('photo-input').addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        profilePic.src = URL.createObjectURL(file); // Display the new profile image
+        deletePhotoButton.disabled = false;         // Enable the delete button
+        deletePhotoButton.classList.remove('disabled');
+    }
+});
+
+// Delete photo functionality with modal confirmation
+deletePhotoButton.addEventListener('click', () => {
+    // Only show the modal if the profile image is not the default one
+    if (!profilePic.src.includes(defaultImagePath)) {
+        document.getElementById('delete-modal').style.display = 'flex';
+    }
+});
+
+document.getElementById('close-modal').addEventListener('click', () => {
+    document.getElementById('delete-modal').style.display = 'none';
+});
+
+document.getElementById('cancel-delete-button').addEventListener('click', () => {
+    document.getElementById('delete-modal').style.display = 'none';
+});
+
+document.getElementById('confirm-delete-button').addEventListener('click', () => {
+    profilePic.src = defaultImagePath; // Set the profile image to default
+    document.getElementById('delete-modal').style.display = 'none';
+    checkProfilePhoto(); // Recheck to disable delete button
+});
