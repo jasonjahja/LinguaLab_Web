@@ -91,12 +91,11 @@ async function updateProfile() {
 
             // Update Firestore
             await updateDoc(userRef, updateData);
-
-            alert("Profile updated successfully!");
+            document.getElementById('edit-modal').style.display = 'flex';
             tempProfilePicture = null; // Clear the temporary variable after saving
         } catch (error) {
             console.error("Error updating profile:", error);
-            alert("Failed to update profile. Please try again.");
+            document.getElementById('error-edit-modal').style.display = 'flex';
         }
     } else {
         alert("User is not authenticated.");
@@ -107,19 +106,11 @@ async function updateProfile() {
 
 // Function to handle logout with confirmation
 async function logout() {
-    const confirmLogout = confirm("Apakah Anda yakin ingin keluar?");
-    
-    if (confirmLogout) {
-        try {
-            await signOut(auth);
-            alert("Berhasil keluar.");
-            window.location.href = "/index.html"; // Redirect to index.html after logout
-        } catch (error) {
-            console.error("Error during logout:", error);
-            alert("Gagal keluar.");
-        }
-    } else {
-        console.log("User canceled logout.");
+    try {
+        document.getElementById('logout-modal').style.display = 'flex';
+    } catch (error) {
+        console.error("Error during logout:", error);
+        alert("Gagal keluar.");
     }
 }
 
@@ -212,6 +203,26 @@ document.getElementById('close-modal').addEventListener('click', () => {
     document.getElementById('delete-modal').style.display = 'none';
 });
 
+document.getElementById('close-modal-logout').addEventListener('click', () => {
+    document.getElementById('logout-modal').style.display = 'none';
+});
+
+document.getElementById('close-modal-edit').addEventListener('click', () => {
+    document.getElementById('edit-modal').style.display = 'none';
+});
+
+document.getElementById('close-modal-edit-error').addEventListener('click', () => {
+    document.getElementById('error-edit-modal').style.display = 'none';
+});
+
+document.getElementById('confirm-edit-error-button').addEventListener('click', () => {
+    document.getElementById('error-edit-modal').style.display = 'none';
+});
+
+document.getElementById('confirm-edit-button').addEventListener('click', () => {
+    document.getElementById('edit-modal').style.display = 'none';
+});
+
 document.getElementById('cancel-delete-button').addEventListener('click', () => {
     document.getElementById('delete-modal').style.display = 'none';
 });
@@ -223,6 +234,27 @@ document.getElementById('confirm-delete-button').addEventListener('click', () =>
     deletePhotoButton.disabled = true;
     deletePhotoButton.classList.add('disabled');
     document.getElementById('delete-modal').style.display = 'none';
+});
+
+document.getElementById('cancel-logout-button').addEventListener('click', () => {
+    document.getElementById('logout-modal').style.display = 'none';
+});
+
+document.getElementById('confirm-logout-button').addEventListener('click', () => {
+    document.getElementById('edit-modal').style.display = 'none';
+});
+
+
+// Function to reset the profile picture to the default when deleting
+document.getElementById('confirm-logout-button').addEventListener('click', async () => {
+    try {
+        await signOut(auth); // Sign out the user
+        window.location.href = "/index.html"; // Redirect to the homepage
+    } catch (error) {
+        console.error("Error during logout:", error);
+    } finally {
+        document.getElementById('logout-modal').style.display = 'none'; // Hide the modal
+    }
 });
 
 // Function to load profile picture safely when a user is logged in

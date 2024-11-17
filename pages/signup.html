@@ -12,12 +12,6 @@
     <main class="signup-page">
         <!-- Signup Container -->
         <div class="auth-container">
-            <!-- Left Side: Illustration or Accent -->
-            <div class="auth-left">
-                <h2>Join Us Today!</h2>
-                <p>Unlock the door to mastering English. Let's start learning!</p>
-            </div>
-
             <!-- Right Side: Signup Form -->
             <div class="auth-right">
                 <div class="form-container">
@@ -31,8 +25,8 @@
                         <div class="input-group">
                             <label for="email_signup">Email</label>
                             <input type="email" id="email_signup" placeholder="Enter your email" required>
+                            <span id="email-error" class="error-message"></span>
                         </div>
-                        <span id="email-error" class="error-message"></span>
                         <div class="input-group">
                             <label for="psw_signup">Password</label>
                             <div class="password-container" >
@@ -58,8 +52,25 @@
                     </form>
                 </div>
             </div>
+            <!-- Left Side: Illustration or Accent -->
+            <div class="auth-left">
+                <h2>Join Us Today!</h2>
+                <p>Unlock the door to mastering English. Let's start learning!</p>
+            </div>
         </div>
     </main>
+
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal">✖</button>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>CONGRATULATIONS</h2>
+            <p>You have successfully signed up!</p>
+            <button class="continue-btn" id="continue-btn">Continue</button>
+        </div>
+    </div>
 
     <script type="module" src="../script/auth.js"></script>
 

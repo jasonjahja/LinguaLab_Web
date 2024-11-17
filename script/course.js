@@ -1,5 +1,5 @@
-import { auth, db } from "./firebase.js"; // Adjust the path based on your project structure
-import { doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { auth, db } from "./firebase.js"; // Import from firebase.js
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
 onAuthStateChanged(auth, (user) => {
@@ -105,7 +105,6 @@ function createCourseCards() {
     });
 }
 
-
 window.addEventListener('load', () => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -117,5 +116,8 @@ window.addEventListener('load', () => {
             // Redirect to login or show an appropriate message
         }
     });
-    
+});
+
+document.getElementById('close-modal-level').addEventListener('click', () => {
+    document.getElementById('back-modal').style.display = 'none';
 });

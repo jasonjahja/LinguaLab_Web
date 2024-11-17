@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Nunito, sans-serif;
+}
+
 .login-page, .signup-page {
     font-family: 'Nunito', sans-serif;
     background: #e0f7ff; /* Light blue background */
@@ -124,7 +133,7 @@
 
 .toggle-btn {
     position: absolute;
-    right: -10px;
+    right: 20px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
@@ -142,6 +151,97 @@
     color: red;
     font-size: 0.9em;
 }
+
+/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fade-in 0.3s ease-in-out;
+}
+
+/* Close Button */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+}
+
+/* Modal Icon */
+.modal-icon {
+    font-size: 60px;
+    color: #2ecc71; /* Green color */
+    margin-bottom: 20px;
+}
+
+/* Modal Heading */
+.modal-content h2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+/* Modal Text */
+.modal-content p {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+/* Continue Button */
+.continue-btn {
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.continue-btn:hover {
+    background: #0056b3;
+}
+
+/* Animation */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {

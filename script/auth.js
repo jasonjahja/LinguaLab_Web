@@ -1,7 +1,7 @@
 // Import Firebase SDK functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -40,23 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
             displayError("password-error", "");
             displayError("confirm-password-error", "");
 
-            // Check if name, email or password is empty
-            // if (!fullname || !email || !password || !confirmPassword) {
-            //     if (!fullname) {
-            //         displayError("fullname-error", "Name field cannot be empty.");
-            //     }
-            //     if (!email) {
-            //         displayError("email-error", "Email field cannot be empty.");
-            //     }
-            //     if (!password) {
-            //         displayError("password-signup-error", "Password field cannot be empty.");
-            //     }
-            //     if (!confirmPassword) {
-            //         displayError("confirm-password-error", "Password confirmation field cannot be empty.");
-            //     }
-            //     return;
-            // }
-
             // Validate passwords
             if (password !== confirmPassword) {
                 displayError("password-error", "Passwords do not match. Please try again.");
@@ -74,9 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     email: email,
                     last_signup: suDate,
                 }).then(() => {
-                    alert("Signup successful!");
+                    showSuccessModal();
                     localStorage.setItem('userId', user.uid);
-                    window.location.href = "home.html";
                 }).catch((error) => {
                     alert("Error creating user document: " + error.message);
                 });
@@ -126,23 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     updateDoc(doc(db, "users", user.uid), {
                         last_login: lgDate
                     }).then(() => {
-                        alert("Login successful!");
-                        window.location.href = "home.html";
-                        // After successful login or signup, store the user ID
+                        showSuccessModal();
                         localStorage.setItem('userId', user.uid);
-                        // firebase.auth().signInWithEmailAndPassword(email, password)
-                        //     .then((userCredential) => {
-                        //         const user = userCredential.user;
-                        //         localStorage.setItem('userId', user.uid); // Store userId for later access
-                        //         console.log("User ID stored:", user.uid);
-                        //         // Redirect or load quiz after login
-                        //         window.location.href = 'quiz.html';
-                        //     })
-                        //     .catch((error) => {
-                        //         console.error("Error during login:", error.message);
-                        //         alert("Login failed. Please check your credentials and try again.");
-                        //     });
-
                     }).catch((error) => {
                         alert("Login failed: " + error.message);
                     });
@@ -206,5 +173,36 @@ document.addEventListener("DOMContentLoaded", () => {
                 icon2.classList.add('fa-eye');
             }
         });
+    }
+});
+
+// Get modal elements
+const modal = document.getElementById('success-modal');
+const closeModal = document.getElementById('close-modal');
+const continueBtn = document.getElementById('continue-btn');
+
+// Show the modal (call this function when signup is successful)
+function showSuccessModal() {
+    modal.style.display = 'flex';
+}
+
+// Close the modal when clicking the close button
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Close the modal and redirect when clicking the Continue button
+continueBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+    window.location.href = 'home.html'; // Redirect to the home page
+});
+
+// Optional: Close the modal if the background is clicked
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+        setTimeout(() => {
+            window.location.href = 'home.html'; // Redirect to the home page
+        }, 3000);
     }
 });

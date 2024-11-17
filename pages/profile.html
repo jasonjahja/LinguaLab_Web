@@ -6,7 +6,6 @@
     <title>User Profile</title>
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/profile.css">
-    <!-- <link rel="stylesheet" href="../styles/styles.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -71,14 +70,52 @@
         </div>
     </main>
 
-    <!-- Delete Confirmation Modal -->
+    <!-- Confirmation Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal-edit">✖</button>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Changes are Saved!</h2>
+            <button id="confirm-edit-button" class="modal-button">Confirm</button>
+        </div>
+    </div>
+
+    <div id="error-edit-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal-edit-error">✖</button>
+            <div class="modal-icon-wrong">
+                <i class="fas fa-times-circle"></i>
+            </div>
+            <h2>Changes are Not Saved!</h2>
+            <button id="confirm-edit-error-button" class="modal-button">Confirm</button>
+        </div>
+    </div>
+
     <div id="delete-modal" class="modal">
         <div class="modal-content">
-            <span class="close-button" id="close-modal">&times;</span>
+            <button class="close-btn" id="close-modal">✖</button>
+            <div class="modal-icon-question">
+                <i class="fas fa-question-circle"></i>
+            </div>
             <h2>Confirm Deletion</h2>
             <p>Are you sure you want to delete your profile photo?</p>
-            <button id="confirm-delete-button" class="modal-button confirm">Yes, delete</button>
             <button id="cancel-delete-button" class="modal-button cancel">Cancel</button>
+            <button id="confirm-delete-button" class="modal-button confirm">Yes, delete</button>
+        </div>
+    </div>
+
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal-logout">✖</button>
+            <div class="modal-icon-question">
+                <i class="fas fa-question-circle"></i>
+            </div>
+            <h2>Confirm Logout</h2>
+            <p>Are you sure you want to log out?</p>
+            <button id="cancel-logout-button" class="modal-button cancel">Cancel</button>
+            <button id="confirm-logout-button" class="modal-button confirm">Yes, Logout</button>
         </div>
     </div>
 

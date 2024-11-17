@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/styles.css">
     <link rel="stylesheet" href="../styles/course.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
     <!-- Navigation Bar -->
-    <header></header>
+    <!-- <header></header> -->
 
     <!-- <div id="loading-spinner" class="loading-spinner" style="display: none;">
         <div class="spinner"></div>
@@ -21,7 +22,7 @@
     <main class="exercise-page">
         <div class="back-button-container">
             <button id="back-button" class="back-button" onclick="goBack()">
-                <span class="back-icon">←</span> Back
+                <i class="fas fa-chevron-left"></i>
             </button>
         </div>     
         <!-- Progress Bar -->
@@ -35,11 +36,14 @@
         <!-- Back Confirmation Modal -->
         <div id="back-modal" class="modal">
             <div class="modal-content">
+                <div class="modal-icon-question">
+                    <i class="fas fa-question-circle"></i>
+                </div>
                 <h2>Are you sure you want to exit?</h2>
                 <p>All unsaved progress will be lost.</p>
                 <div class="modal-buttons">
-                    <button id="confirm-back-button" class="modal-button confirm">Yes, Exit</button>
                     <button id="cancel-back-button" class="modal-button cancel">Cancel</button>
+                    <button id="confirm-back-button" class="modal-button confirm">Yes, Exit</button>
                 </div>
             </div>
         </div>

@@ -62,33 +62,6 @@ p {
     margin: 0 auto;
 }
 
-/* For tablets (screens 768px and up) */
-@media (max-width: 835px) {
-    .hero h1 {
-        font-size: 5vw;
-    }
-
-    .hero p {
-        font-size: 1.2em;
-        max-width: 70%; /* Reduce max width for better fit */
-    }
-}
-
-/* For mobile devices (screens 480px and up) */
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 7vw; /* Larger font size based on viewport width */
-        margin-bottom: 15px;
-    }
-
-    .hero p {
-        font-size: 1em;
-        max-width: 50%; /* Allow full width */
-    }
-}
-
-
-
 /* Features Section */
 .features {
     padding: 80px 100px;
@@ -121,22 +94,6 @@ p {
 .feature-section.reversed .feature-image {
     order: 2; /* Image appears second on desktop */
 }
-
-/* Mobile styles */
-@media (max-width: 768px) {
-    .feature-section {
-        flex-direction: column;
-    }
-
-    .feature-section.reversed .feature-image {
-        order: 1; /* Image appears first on mobile */
-    }
-
-    .feature-section.reversed .feature-texts2 {
-        order: 2; /* Text appears second on mobile */
-    }
-}
-
 
 .feature-texts {
     padding: 0 0 0 15vw;
@@ -225,31 +182,83 @@ footer {
     text-align: center;
 }
 
-/* General Responsive Styles */
-@media (max-width: 1024px) {
+@media (max-width: 480px) {
+    body {
+        font-size: 0.85em;
+    }
+
     h1 {
-        font-size: 4em;
+        font-size: 2.5em;
     }
 
     h2 {
-        font-size: 2em;
-    }
-
-    h3 {
         font-size: 1.5em;
     }
 
+    h3 {
+        font-size: 1.2em;
+    }
+
     .cta-btn-text {
-        padding: 0 120px;
-        font-size: 1.1em;
+        padding: 0 40px;
+        font-size: 1em;
+    }
+
+    .navbar {
+        padding: 10px 10px;
+    }
+
+    .navbar ul li {
+        margin-right: 1vw;
+    }
+
+    .auth-container {
+        padding: 10px;
+        height: auto;
+    }
+
+    .auth-left, .auth-right {
+        padding: 10px;
+    }
+
+    .features {
+        padding: 40px 20px;
+    }
+
+    .feature-section {
+        flex-wrap: wrap;
     }
 
     .cta-btn-course {
-        font-size: 14px;
-        padding: 10px 30px;
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+
+    .feature-texts, .feature-texts2 {
+        padding: 4vw 2vw;
+    }
+
+    .cta-image {
+        height: 40vw;
+    }
+
+    .footer {
+        font-size: 0.8em;
+        padding: 1vw;
+    }
+
+    .hero h1 {
+        font-size: 7vw; /* Larger font size based on viewport width */
+        margin-bottom: 15px;
+    }
+
+    .hero p {
+        font-size: 1em;
+        max-width: 50%; /* Allow full width */
     }
 }
 
+/* Mobile styles */
 @media (max-width: 768px) {
     body {
         font-size: 0.9em;
@@ -333,71 +342,57 @@ footer {
         font-size: 0.9em;
         padding: 1.5vw;
     }
-}
 
-@media (max-width: 480px) {
-    body {
-        font-size: 0.85em;
+    .feature-section {
+        flex-direction: column;
     }
 
+    .feature-section.reversed .feature-image {
+        order: 1; /* Image appears first on mobile */
+    }
+
+    .feature-section.reversed .feature-texts2 {
+        order: 2; /* Text appears second on mobile */
+    }
+}
+
+@media (max-width: 835px) {
+    .hero h1 {
+        font-size: 5vw;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+        max-width: 70%; /* Reduce max width for better fit */
+    }
+
+    .confirm-btn {
+        padding: 12px 20%; /* Increase padding for larger screens */
+        font-size: 1.3em; /* Increase font size slightly */
+    }
+}
+
+@media (max-width: 1024px) {
     h1 {
-        font-size: 2.5em;
+        font-size: 4em;
     }
 
     h2 {
-        font-size: 1.5em;
+        font-size: 2em;
     }
 
     h3 {
-        font-size: 1.2em;
+        font-size: 1.5em;
     }
 
     .cta-btn-text {
-        padding: 0 40px;
-        font-size: 1em;
-    }
-
-    .navbar {
-        padding: 10px 10px;
-    }
-
-    .navbar ul li {
-        margin-right: 1vw;
-    }
-
-    .auth-container {
-        padding: 10px;
-        height: auto;
-    }
-
-    .auth-left, .auth-right {
-        padding: 10px;
-    }
-
-    .features {
-        padding: 40px 20px;
-    }
-
-    .feature-section {
-        flex-wrap: wrap;
+        padding: 0 120px;
+        font-size: 1.1em;
     }
 
     .cta-btn-course {
-        font-size: 12px;
-        padding: 8px 15px;
-    }
-
-    .feature-texts, .feature-texts2 {
-        padding: 4vw 2vw;
-    }
-
-    .cta-image {
-        height: 40vw;
-    }
-
-    .footer {
-        font-size: 0.8em;
-        padding: 1vw;
+        font-size: 14px;
+        padding: 10px 30px;
     }
 }
 
@@ -513,7 +508,6 @@ footer {
     color: white;
     font-size: 1.3em;
     font-weight: bold;
-    /* padding: 0 240px; */
 }
 
 .confirm-btn:hover {
@@ -530,6 +524,31 @@ footer {
 #confirm-btn:disabled:hover {
     background-color: #ccc;
     transform: none;
+}
+
+/* Small screens (mobile) */
+@media (max-width: 576px) {
+    .confirm-btn {
+        font-size: 1.1em;
+        padding: 12px 30%;
+    }
+}
+
+/* Large screens (desktop) */
+@media (max-width: 769px){
+    .confirm-btn {
+        font-size: 1.2em;
+        padding: 12px 0%;
+    }
+}
+
+/* Extra-large screens (large desktop) */
+@media (max-width: 1201px) {
+    .confirm-btn {
+        font-size: 1.3em;
+        padding: 8px 20%;
+        max-width: 500px;
+    }
 }
 
 #notification {

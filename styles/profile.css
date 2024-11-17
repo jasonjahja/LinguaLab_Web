@@ -266,6 +266,9 @@ main {
     border-radius: 4px;
     margin-top: 10px;
     cursor: pointer;
+    background: #007bff;
+    color: white;
+    font-weight: bold;
 }
 
 .modal-button.confirm {
@@ -343,3 +346,14 @@ main {
     margin-right: 8px;
 }
 
+.modal-icon-question {
+    font-size: 60px;
+    color: #ffc107;
+    margin-bottom: 20px;
+}
+
+.modal-icon-wrong {
+    font-size: 60px;
+    color: #dc3545;
+    margin-bottom: 20px;
+}

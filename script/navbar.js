@@ -47,10 +47,15 @@ function generateNavbar(profileImageUrl) {
         </div>
         <div id="logout-modal" class="modal">
             <div class="modal-content">
+                <button class="close-btn" id="close-modal-navbar">✖</button>
+                <div class="modal-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>WAIT!</h2>
                 <p>Are you sure you want to log out?</p>
                 <div class="modal-buttons">
-                    <button id="confirm-logout" class="confirm-button">Yes</button>
                     <button id="cancel-logout" class="cancel-button">No</button>
+                    <button id="confirm-logout" class="confirm-button">Yes</button>
                 </div>
             </div>
         </div>
@@ -66,6 +71,7 @@ function generateNavbar(profileImageUrl) {
         const modal = document.getElementById("logout-modal");
         const confirmLogout = document.getElementById("confirm-logout");
         const cancelLogout = document.getElementById("cancel-logout");
+        const closeModal = document.getElementById("close-modal-navbar");
 
         logoLink.addEventListener("click", () => {
             modal.style.display = "flex";
@@ -82,6 +88,11 @@ function generateNavbar(profileImageUrl) {
         });
 
         cancelLogout.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        // Close the modal when clicking the close button
+        closeModal.addEventListener('click', () => {
             modal.style.display = "none";
         });
     }

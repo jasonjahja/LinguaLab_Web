@@ -1,21 +1,6 @@
-// Firebase setup and Firestore initialization
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, doc, setDoc, updateDoc, getDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyCNak1aWVJ_HCXmavCuo95FwnrQWgEIQRk",
-    authDomain: "lingualab-9832e.firebaseapp.com",
-    projectId: "lingualab-9832e",
-    storageBucket: "lingualab-9832e.firebasestorage.app",
-    messagingSenderId: "97458692092",
-    appId: "1:97458692092:web:91f1caec18e753ddd09c79",
-    measurementId: "G-9J4EKPQPRD"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { auth, db } from "./firebase.js"; // Import shared Firebase instance
+import { doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
 let unlockedStages = [];
 let stageScores = [];
@@ -430,7 +415,7 @@ window.goBack = function () {
     modal.style.display = "flex";
 };
 
-// Handle confirmation and cancellation
+
 document.getElementById("confirm-back-button").addEventListener("click", () => {
     window.location.href = "home.html"; // Redirect to the home page
 });
