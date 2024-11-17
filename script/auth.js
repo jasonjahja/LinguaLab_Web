@@ -1,7 +1,7 @@
 // Import Firebase SDK functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -40,23 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
             displayError("password-error", "");
             displayError("confirm-password-error", "");
 
-            // Check if name, email or password is empty
-            // if (!fullname || !email || !password || !confirmPassword) {
-            //     if (!fullname) {
-            //         displayError("fullname-error", "Name field cannot be empty.");
-            //     }
-            //     if (!email) {
-            //         displayError("email-error", "Email field cannot be empty.");
-            //     }
-            //     if (!password) {
-            //         displayError("password-signup-error", "Password field cannot be empty.");
-            //     }
-            //     if (!confirmPassword) {
-            //         displayError("confirm-password-error", "Password confirmation field cannot be empty.");
-            //     }
-            //     return;
-            // }
-
             // Validate passwords
             if (password !== confirmPassword) {
                 displayError("password-error", "Passwords do not match. Please try again.");
@@ -74,9 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     email: email,
                     last_signup: suDate,
                 }).then(() => {
-                    alert("Signup successful!");
+                    showSuccessModal();
                     localStorage.setItem('userId', user.uid);
-                    window.location.href = "home.html";
                 }).catch((error) => {
                     alert("Error creating user document: " + error.message);
                 });
@@ -126,23 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     updateDoc(doc(db, "users", user.uid), {
                         last_login: lgDate
                     }).then(() => {
-                        alert("Login successful!");
-                        window.location.href = "home.html";
-                        // After successful login or signup, store the user ID
+                        showSuccessModal();
                         localStorage.setItem('userId', user.uid);
-                        // firebase.auth().signInWithEmailAndPassword(email, password)
-                        //     .then((userCredential) => {
-                        //         const user = userCredential.user;
-                        //         localStorage.setItem('userId', user.uid); // Store userId for later access
-                        //         console.log("User ID stored:", user.uid);
-                        //         // Redirect or load quiz after login
-                        //         window.location.href = 'quiz.html';
-                        //     })
-                        //     .catch((error) => {
-                        //         console.error("Error during login:", error.message);
-                        //         alert("Login failed. Please check your credentials and try again.");
-                        //     });
-
                     }).catch((error) => {
                         alert("Login failed: " + error.message);
                     });
@@ -153,30 +120,89 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Toggle password visibility for login
-    const togglePasswordLogin = document.getElementById("toggle-password-login");
-    const passwordLoginField = document.getElementById("psw_login");
-    if (togglePasswordLogin && passwordLoginField) {
-        togglePasswordLogin.addEventListener("click", () => {
-            passwordLoginField.type = passwordLoginField.type === "password" ? "text" : "password";
+    // Toggle Password Visibility for Login
+    const togglePasswordLogin = document.getElementById('toggle-password-login');
+    if (togglePasswordLogin) {
+        togglePasswordLogin.addEventListener('click', function () {
+            const passwordField = document.getElementById('psw_login');
+            const icon = document.getElementById('toggle-icon-login');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
         });
     }
 
-    // Toggle password visibility for signup
-    const togglePasswordSignup = document.getElementById("toggle-password-signup");
-    const passwordSignupField = document.getElementById("psw_signup");
-    if (togglePasswordSignup && passwordSignupField) {
-        togglePasswordSignup.addEventListener("click", () => {
-            passwordSignupField.type = passwordSignupField.type === "password" ? "text" : "password";
+    // Toggle Password Visibility for Signup
+    const togglePasswordSignup = document.getElementById('toggle-password-signup');
+    const toggleConfirmPassword = document.getElementById('toggle-confirm-password');
+    
+    if (togglePasswordSignup || toggleConfirmPassword) {
+        togglePasswordSignup.addEventListener('click', function () {
+            const passwordField1 = document.getElementById('psw_signup');
+            const icon1 = document.getElementById('toggle-icon1-signup');
+
+            if (passwordField1.type === 'password') {
+                passwordField1.type = 'text';
+                icon1.classList.remove('fa-eye');
+                icon1.classList.add('fa-eye-slash');
+            } else {
+                passwordField1.type = 'password';
+                icon1.classList.remove('fa-eye-slash');
+                icon1.classList.add('fa-eye');
+            }
+        });
+
+        toggleConfirmPassword.addEventListener('click', function () {
+            const passwordField2 = document.getElementById('confirm_password');
+            const icon2 = document.getElementById('toggle-icon2-signup');
+
+            if (passwordField2.type === 'password') {
+                passwordField2.type = 'text';
+                icon2.classList.remove('fa-eye');
+                icon2.classList.add('fa-eye-slash');
+            } else {
+                passwordField2.type = 'password';
+                icon2.classList.remove('fa-eye-slash');
+                icon2.classList.add('fa-eye');
+            }
         });
     }
+});
 
-    // Toggle password visibility for confirm password
-    const toggleConfirmPassword = document.getElementById("toggle-confirm-password");
-    const confirmPasswordField = document.getElementById("confirm-password");
-    if (toggleConfirmPassword && confirmPasswordField) {
-        toggleConfirmPassword.addEventListener("click", () => {
-            confirmPasswordField.type = confirmPasswordField.type === "password" ? "text" : "password";
-        });
+// Get modal elements
+const modal = document.getElementById('success-modal');
+const closeModal = document.getElementById('close-modal');
+const continueBtn = document.getElementById('continue-btn');
+
+// Show the modal (call this function when signup is successful)
+function showSuccessModal() {
+    modal.style.display = 'flex';
+}
+
+// Close the modal when clicking the close button
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Close the modal and redirect when clicking the Continue button
+continueBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+    window.location.href = 'home.html'; // Redirect to the home page
+});
+
+// Optional: Close the modal if the background is clicked
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+        setTimeout(() => {
+            window.location.href = 'home.html'; // Redirect to the home page
+        }, 3000);
     }
 });

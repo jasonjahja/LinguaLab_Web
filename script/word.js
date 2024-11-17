@@ -129,7 +129,12 @@ function displayWordDetails() {
     
     if (wordData) {
         wordDetailsDiv.innerHTML = `
-            <h2>${wordData.word}</h2>
+            <div class="word-header">
+                <button id="back-button" class="back-button" onclick="goBack()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <h2>${wordData.word}</h2>
+            </div>
             <p class="definition">${wordData.definition}</p>
 
             <h3>Usage Examples</h3>
@@ -149,7 +154,7 @@ function displayWordDetails() {
                 <p>${wordData.origin}</p>
             </div>
 
-            <div style="text-align: center; margin: 7vw;"><a href="home.html" class="done-btn">Back to Home</a></div>
+            <div style="text-align: center; margin: 7vw;"><a href="home.html" class="confirm-btn">Back to Home</a></div>
         `;
     } else {
         wordDetailsDiv.innerHTML = "<p>Word not found.</p>";
@@ -158,3 +163,7 @@ function displayWordDetails() {
 
 // Run the function on page load
 window.addEventListener('load', displayWordDetails);
+
+window.goBack = function () {
+    window.location.href = 'home.html';
+};

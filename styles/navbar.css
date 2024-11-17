@@ -1,0 +1,356 @@
+/* Importing Nunito font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Nunito, sans-serif;
+}
+
+body {
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+h1 {
+    font-size: 5em;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 1vw;
+}
+
+h3 {
+    font-size: 1.8em;
+}
+
+p {
+    font-size: 1em;
+}
+
+/* Navbar */
+.navbar {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    background-color: #fff;
+    padding: 20px 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.navbar .logo a {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #1e90ff;
+    cursor: pointer;
+}
+
+.navbar ul {
+    margin-left: auto;
+    list-style-type: none;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-right: 3vw;
+}
+
+/* Default styles */
+.navbar .login-btn {
+    margin-left: auto;
+    padding: 8px 60px;
+    background-color: #1e90ff;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    transition: padding 0.3s, font-size 0.3s;
+}
+
+/* Tablet screen (max-width: 768px) */
+@media (max-width: 768px) {
+    .navbar .login-btn {
+        padding: 8px 40px; /* Reduce padding */
+        font-size: 0.9em; /* Slightly smaller font */
+    }
+}
+
+/* Mobile screen (max-width: 480px) */
+@media (max-width: 480px) {
+    .navbar .login-btn {
+        padding: 6px 20px; /* Reduce padding further */
+        font-size: 0.8em;  /* Even smaller font */
+    }
+}
+
+
+/* Profile Button */
+.navbar .profile-btn {
+    display: inline-block;
+    width: 50px; /* Set the size of the button */
+    height: 50px;
+    border-radius: 50%; /* Make it circular */
+    overflow: hidden; /* Ensure the image does not overflow the button */
+    padding: 0; /* Remove default padding */
+    border: 2px solid white; /* Optional: Add a border for better aesthetics */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for depth */
+    text-align: center;
+}
+
+/* Profile Image */
+.navbar .profile-btn .profile-img {
+    width: 100%; /* Ensure the image covers the button */
+    height: 100%;
+    object-fit: cover; /* Ensures the image scales properly without distortion */
+    border-radius: 50%; /* Match the circular shape */
+}
+
+/* Profile button mobile */
+.profile-btn-mobile {
+    margin-top: auto; /* Push it to the bottom */
+    text-align: center;
+    display: block;
+    padding: 1.5rem 0; /* Add padding for spacing */
+}
+
+.profile-btn-mobile .profile-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.hamburger {
+    display: none;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+/* Sidebar container */
+.sidebar {
+    height: 100%; /* Full-height */
+    width: 0; /* Set initial width to 0 */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Stay on top of everything */
+    top: 0;
+    right: 0; /* Align to the right */
+    background-color: #1e90ff; /* Dark background color */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.4s; /* Smooth slide-in effect */
+    padding-top: 60px; /* Add padding for content */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Separate main items and profile */
+}
+
+/* Sidebar links */
+.sidebar a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+    text-align: left;
+}
+
+/* Close button */
+.sidebar .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    font-size: 30px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* Profile section at the bottom */
+.profile-btn-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    transition: transform 0.3s;
+}
+
+.profile-img:hover {
+    transform: scale(1.1);
+}
+
+/* Animation for sidebar */
+.sidebar.open {
+    width: 250px; /* Adjust width when open */
+}
+
+/* Hamburger button */
+.hamburger {
+    font-size: 28px;
+    cursor: pointer;
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar li, .profile-btn, .profile-div {
+        display: none;
+    }
+    
+    .hamburger {
+        display: block;
+        color: #1e90ff;
+        padding-left: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo a {
+        font-size: 1.2em;
+    }
+
+    .hamburger {
+        font-size: 1.8em;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fade-in 0.3s ease-in-out;
+}
+
+/* Close Button */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+}
+
+/* Modal Icon */
+.modal-icon {
+    font-size: 60px;
+    color: #2ecc71; /* Green color */
+    margin-bottom: 20px;
+}
+
+/* Modal Heading */
+.modal-content h2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+/* Modal Text */
+.modal-content p {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.confirm-button,
+.cancel-button {
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 40px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.confirm-button {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.confirm-button:hover {
+    background-color: #c0392b;
+}
+
+.cancel-button {
+    background-color: #bdc3c7;
+    color: #fff;
+}
+
+.cancel-button:hover {
+    background-color: #95a5a6;
+}

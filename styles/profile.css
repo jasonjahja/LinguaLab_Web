@@ -1,10 +1,39 @@
 /* Main Layout */
 main {
-    padding: 40px 20px;
+    padding: 30px 20px;
 }
 
-.profile-title{
-    padding: 0 40px;
+/* Profile Header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between button and heading */
+    margin-bottom: 20px;
+}
+
+/* Back Button */
+.back-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem; /* Icon size */
+    color: #3498db; /* Icon color */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.back-button:hover {
+    color: #1e70b8; /* Hover color */
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Profile Title */
+.profile-title {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #000;
 }
 
 /* Profile Container Styling */
@@ -14,8 +43,7 @@ main {
     border-radius: 12px;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    margin: 25vh auto;
-    margin-bottom: 10vh;
+    margin: 3vh auto;
 }
 
 .profile-container-sides {
@@ -91,7 +119,7 @@ main {
 }
 
 .input-group {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .input-group label {
@@ -146,33 +174,48 @@ main {
 
 .photo-buttons {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-.photo-button {
-    padding: 5px 10px;
+/* Button styles */
+.photo-button,
+.delete-photo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* Center the content */
+    gap: 0.5rem; 
+    width: 120px; /* Set a fixed width */
+    height: 40px; /* Set a fixed height */
     font-size: 14px;
     background-color: #2980b9;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+/* Specific styles for delete button */
 .delete-photo-button {
-    padding: 5px 10px;
-    font-size: 14px;
     background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
+/* Hover effects */
 .photo-button:hover {
-    background-color: #45a049;
+    background-color: #1e70b8;
 }
+
+.delete-photo-button:hover {
+    background-color: #c0392b;
+}
+
+/* Icon styles */
+.photo-button i,
+.delete-photo-button i {
+    font-size: 16px;
+}
+
 
 
 /* Modal overlay */
@@ -223,6 +266,9 @@ main {
     border-radius: 4px;
     margin-top: 10px;
     cursor: pointer;
+    background: #007bff;
+    color: white;
+    font-weight: bold;
 }
 
 .modal-button.confirm {
@@ -243,4 +289,71 @@ main {
 .disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+/* Input group for email (read-only style) */
+.input-group input[readonly] {
+    border: none; /* Remove the border */
+    background-color: transparent; /* Remove the background */
+    font-size: 1em; /* Keep the font size consistent */
+    color: #333; /* Set the text color */
+    cursor: default; /* Change the cursor to default to indicate it's not editable */
+    padding: 0; /* Remove padding for a cleaner look */
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px; /* Adjust margin for tighter spacing */
+}
+
+.input-group input[readonly]:focus {
+    outline: none; /* Remove focus outline */
+}
+
+/* Optional styling to align the email field with the rest of the form */
+.input-group input[readonly] {
+    padding: 4px 0; /* Add slight padding for spacing */
+    font-weight: normal; /* Adjust font weight to match form text */
+}
+
+.back-button-container {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #3498db;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #eaf3fc;
+    color: #2980b9;
+}
+
+.back-icon {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.modal-icon-question {
+    font-size: 60px;
+    color: #ffc107;
+    margin-bottom: 20px;
+}
+
+.modal-icon-wrong {
+    font-size: 60px;
+    color: #dc3545;
+    margin-bottom: 20px;
 }
