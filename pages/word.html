@@ -4,31 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Details</title>
+    <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/word.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo"><a href="../index.html">LinguaLab</a></div>
-            <ul class="nav-links">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="word.html">Words</a></li>
-                <li><a href="course.html">Quiz</a></li>
-            </ul>
-            <a href="profile.html" class="profile-btn">
-                <img class="profile-img" src="../assets/default-profile.jpg" alt="Profile Image">
-            </a>
-            <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
-        </nav>
-        
-        <!-- Sidebar -->
-        <div id="sidebar" class="sidebar">
-            <a href="javascript:void(0)" class="close-btn" onclick="toggleSidebar()">&times;</a>
-            <a href="home.html">Home</a>
-            <a href="home.html">Words</a>
-            <a href="#courses-sections">Quiz</a>
-        </div>
-    </header>
+    <header></header>
 
     <main class="word-page">
         <section class="word-details" id="word-details">
@@ -39,6 +21,8 @@
     <footer>
         <p>© 2024 English Virtual Lab. All rights reserved.</p>
     </footer>
-    <script src="../script/word.js"></script>
+
+    <script type="module" src="../script/navbar.js"></script>
+    <script src="../script/word.js"></script>  
 </body>
 </html>

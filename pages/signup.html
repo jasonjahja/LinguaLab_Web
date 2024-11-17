@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - English Learning</title>
     <link rel="stylesheet" href="../styles/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
@@ -36,7 +37,9 @@
                             <label for="psw_signup">Password</label>
                             <div class="password-container" >
                                 <input type="password" id="psw_signup" placeholder="Create a password" required>
-                                <button type="button" id="toggle-password-signup" class="toggle-btn">👁️</button>
+                                <button type="button" id="toggle-password-signup" class="toggle-btn">
+                                    <i id="toggle-icon1-signup" class="fas fa-eye"></i>
+                                </button>
                             </div>
                             <span id="password-error" class="error-message"></span>
                         </div>
@@ -44,7 +47,9 @@
                             <label for="confirm-password">Confirm Password</label>
                             <div class="password-container">
                                 <input type="password" id="confirm-password" placeholder="Confirm your password" required>
-                                <button type="button" id="toggle-confirm-password" class="toggle-btn">👁️</button>
+                                <button type="button" id="toggle-confirm-password" class="toggle-btn">
+                                    <i id="toggle-icon2-signup" class="fas fa-eye"></i>
+                                </button>
                             </div>
                             <span id="confirm-password-error" class="error-message"></span>
                         </div>

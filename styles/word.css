@@ -1,0 +1,87 @@
+/* Profile Header */
+.word-header {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between button and heading */
+    margin-bottom: 20px;
+}
+
+/* Back Button */
+.back-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem; /* Icon size */
+    color: #3498db; /* Icon color */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.back-button:hover {
+    color: #1e70b8; /* Hover color */
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Profile Title */
+.word-header h2 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #000;
+}
+
+.word-page {
+    padding: 140px 9vw;
+}
+
+.word-page h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+.word-details {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.pronunciation {
+    font-size: 18px;
+    color: gray;
+}
+
+.part-of-speech {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.definition {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.example {
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.synonyms {
+    margin-top: 20px;
+    margin-bottom: 4vw;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.word-btn:hover a {
+    color: white; /* Change the text color to white on hover */
+}

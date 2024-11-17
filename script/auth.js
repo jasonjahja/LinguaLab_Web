@@ -153,30 +153,58 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Toggle password visibility for login
-    const togglePasswordLogin = document.getElementById("toggle-password-login");
-    const passwordLoginField = document.getElementById("psw_login");
-    if (togglePasswordLogin && passwordLoginField) {
-        togglePasswordLogin.addEventListener("click", () => {
-            passwordLoginField.type = passwordLoginField.type === "password" ? "text" : "password";
+    // Toggle Password Visibility for Login
+    const togglePasswordLogin = document.getElementById('toggle-password-login');
+    if (togglePasswordLogin) {
+        togglePasswordLogin.addEventListener('click', function () {
+            const passwordField = document.getElementById('psw_login');
+            const icon = document.getElementById('toggle-icon-login');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
         });
     }
 
-    // Toggle password visibility for signup
-    const togglePasswordSignup = document.getElementById("toggle-password-signup");
-    const passwordSignupField = document.getElementById("psw_signup");
-    if (togglePasswordSignup && passwordSignupField) {
-        togglePasswordSignup.addEventListener("click", () => {
-            passwordSignupField.type = passwordSignupField.type === "password" ? "text" : "password";
-        });
-    }
+    // Toggle Password Visibility for Signup
+    const togglePasswordSignup = document.getElementById('toggle-password-signup');
+    const toggleConfirmPassword = document.getElementById('toggle-confirm-password');
+    
+    if (togglePasswordSignup || toggleConfirmPassword) {
+        togglePasswordSignup.addEventListener('click', function () {
+            const passwordField1 = document.getElementById('psw_signup');
+            const icon1 = document.getElementById('toggle-icon1-signup');
 
-    // Toggle password visibility for confirm password
-    const toggleConfirmPassword = document.getElementById("toggle-confirm-password");
-    const confirmPasswordField = document.getElementById("confirm-password");
-    if (toggleConfirmPassword && confirmPasswordField) {
-        toggleConfirmPassword.addEventListener("click", () => {
-            confirmPasswordField.type = confirmPasswordField.type === "password" ? "text" : "password";
+            if (passwordField1.type === 'password') {
+                passwordField1.type = 'text';
+                icon1.classList.remove('fa-eye');
+                icon1.classList.add('fa-eye-slash');
+            } else {
+                passwordField1.type = 'password';
+                icon1.classList.remove('fa-eye-slash');
+                icon1.classList.add('fa-eye');
+            }
+        });
+
+        toggleConfirmPassword.addEventListener('click', function () {
+            const passwordField2 = document.getElementById('confirm_password');
+            const icon2 = document.getElementById('toggle-icon2-signup');
+
+            if (passwordField2.type === 'password') {
+                passwordField2.type = 'text';
+                icon2.classList.remove('fa-eye');
+                icon2.classList.add('fa-eye-slash');
+            } else {
+                passwordField2.type = 'password';
+                icon2.classList.remove('fa-eye-slash');
+                icon2.classList.add('fa-eye');
+            }
         });
     }
 });

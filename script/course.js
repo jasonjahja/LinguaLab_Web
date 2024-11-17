@@ -1,24 +1,6 @@
-// Firebase setup and Firestore initialization
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, doc, setDoc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-import { getAuth, onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyCNak1aWVJ_HCXmavCuo95FwnrQWgEIQRk",
-    authDomain: "lingualab-9832e.firebaseapp.com",
-    projectId: "lingualab-9832e",
-    storageBucket: "lingualab-9832e.firebasestorage.app",
-    messagingSenderId: "97458692092",
-    appId: "1:97458692092:web:91f1caec18e753ddd09c79",
-    measurementId: "G-9J4EKPQPRD"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-const user = auth.currentUser;
+import { auth, db } from "./firebase.js"; // Adjust the path based on your project structure
+import { doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -62,9 +44,6 @@ const courses = [
 
 // Tracks unlocked stages and scores (default values)
 let unlockedStages = [true, false, false, false, false];
-let scoreStages = [];
-
-
 
 /**
  * Fetch user data from Firestore
@@ -86,21 +65,6 @@ async function fetchUserData(userId) {
     }
 
     createCourseCards();
-}
-
-
-/**
- * Save unlockedStages and scoreStages to Firestore
- */
-async function saveUserData() {
-    try {
-        await updateDoc(userDocRef, {
-            unlockedStages,
-            scoreStages
-        });
-    } catch (error) {
-        console.error("Error saving user data:", error);
-    }
 }
 
 function selectStage(stage, event) {
@@ -141,39 +105,17 @@ function createCourseCards() {
     });
 }
 
-/**
- * Complete a stage and unlock the next one
- */
-async function completeStage(userId, stageIndex) {
-    console.log(`completeStage invoked with userId: ${userId}, stageIndex: ${stageIndex}`);
-    
-    if (!userId || typeof stageIndex !== 'number') {
-        console.error("Invalid parameters for completeStage");
-        return;
-    }
-
-    if (stageIndex < unlockedStages.length - 1) {
-        unlockedStages[stageIndex + 1] = true;
-        console.log(`Stage ${stageIndex + 1} unlocked for userId: ${userId}`);
-        await saveUserData(userId);
-    } else {
-        console.log("No more stages to unlock.");
-    }
-
-    await showResults(userId, stageIndex);
-}
-
 
 window.addEventListener('load', () => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const userId = user.uid;
-            console.log("User signed in with ID:", userId);
-            fetchUserData(userId); // Pass the userId to fetch user data
+            console.log("User ID:", userId);
+            fetchUserData(userId); // Fetch user data
         } else {
             console.log("No user is signed in.");
-            // Redirect to login page if necessary
+            // Redirect to login or show an appropriate message
         }
     });
+    
 });
-

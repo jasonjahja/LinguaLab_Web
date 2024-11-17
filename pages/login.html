@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Signup - English Learning</title>
     <link rel="stylesheet" href="../styles/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <main class="login-page">
@@ -31,7 +32,9 @@
                             <label for="psw_login">Password</label>
                             <div class="password-container" >
                                 <input type="password" id="psw_login" placeholder="Enter your password" required>
-                                <button type="button" id="toggle-password-login" class="toggle-btn">👁️</button>
+                                <button type="button" id="toggle-password-login" class="toggle-btn">
+                                    <i id="toggle-icon-login" class="fas fa-eye"></i>
+                                </button>
                             </div>
                             <span id="psw-login-error" class="error-message"></span>
                         </div>

@@ -162,20 +162,6 @@ function createWordButtons() {
 
 // Function to save the clicked word
 function saveWord(word) {
-    // if (!savedWords.includes(word)) {
-    //     savedWords.unshift(word);
-    // } else {
-    //     removeElement(savedWords, word);
-    // }
-
-    // if (savedWords.length != 1) {
-    //     document.getElementById('notification').innerText = '* You must select 1 word.';
-    //     disableConfirmButton(true); 
-    // } else {
-    //     document.getElementById('notification').innerText = '';
-    //     disableConfirmButton(false); 
-    // }
-    // highlightSelectedWords();
     savedWords=[word];
     document.getElementById('notification').innerText = ''; 
     disableConfirmButton(false);
@@ -209,15 +195,6 @@ function highlightSelectedWords() {
         }
     });
 }
-
-// function removeElement(array, wordToRemove) {
-//     array.forEach((item, index) => {
-//         if (item === wordToRemove) {
-//             array.splice(index, 1);
-//         }
-//     });
-//     return array;
-// }
 
 window.addEventListener('load', function() {
     if (document.getElementById('confirm-btn')) {

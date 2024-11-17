@@ -19,7 +19,7 @@ const db = getFirestore(app);
 
 let unlockedStages = [];
 let stageScores = [];
-let bestScores = [];
+let currentStageScore = 0;
 const quizData = [
     {
         stage: 1,
@@ -59,7 +59,65 @@ const quizData = [
             },
         ]
     },
+    {
+        stage: 3,
+        levels: [
+            {
+                level: 1,
+                question: "Where do you pick up your luggage after arriving?",
+                answer: "You pick up your luggage at the _____ area.",
+                options: ["luggage claim", "departure gate", "check-in desk", "boarding gate"],
+                correctAnswer: "luggage claim"
+            },
+            {
+                level: 2,
+                question: "How do you ask for flight delay information?",
+                answer: "Can you let me know if the flight is _____?",
+                options: ["delayed", "canceled", "early", "moved"],
+                correctAnswer: "delayed"
+            },
+        ]
+    },
+    {
+        stage: 4,
+        levels: [
+            {
+                level: 1,
+                question: "What document is essential for international travel?",
+                answer: "You need a valid _____ for international travel.",
+                options: ["passport", "boarding pass", "luggage tag", "ticket"],
+                correctAnswer: "passport"
+            },
+            {
+                level: 2,
+                question: "What should you do if you miss your flight?",
+                answer: "You should _____ the airline to reschedule your ticket.",
+                options: ["contact", "ignore", "leave", "complain to"],
+                correctAnswer: "contact"
+            },
+        ]
+    },
+    {
+        stage: 5,
+        levels: [
+            {
+                level: 1,
+                question: "What does 'check-in' mean?",
+                answer: "You _____ your luggage at the check-in counter.",
+                options: ["drop off", "carry", "unload", "reclaim"],
+                correctAnswer: "drop off"
+            },
+            {
+                level: 2,
+                question: "What does 'boarding pass' allow you to do?",
+                answer: "Your boarding pass lets you _____ the plane.",
+                options: ["board", "cancel", "check", "refund"],
+                correctAnswer: "board"
+            },
+        ]
+    },
 ];
+
 
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -88,13 +146,11 @@ async function fetchUserData(userId) {
         const userData = userDoc.data();
         unlockedStages = userData.unlockedStages || [true, false, false, false, false];
         stageScores = userData.stageScores || [];
-        bestScores = userData.bestScores || [];
     } else {
         console.log('No user data found. Initializing new data.');
         await setDoc(userDocRef, {
             unlockedStages: [true, false, false, false, false],
             stageScores: [],
-            bestScores: []
         });
     }
 }
@@ -103,24 +159,17 @@ async function fetchUserData(userId) {
  * Save user data to Firestore
  */
 async function saveUserData(userId) {
-    if (!userId || typeof userId !== 'string') {
-        console.error("Invalid userId passed to saveUserData:", userId);
-        throw new Error("Invalid userId");
-    }
     const userDocRef = doc(db, 'users', userId);
     try {
         await updateDoc(userDocRef, {
             unlockedStages,
-            stageScores,
-            bestScores
+            stageScores, // Save the best scores for each stage
         });
-        console.log("User data successfully updated!");
+        console.log("User data successfully updated with stage scores!");
     } catch (error) {
         console.error("Error updating user data:", error);
     }
 }
-
-
 
 /**
  * Render a quiz level
@@ -163,8 +212,6 @@ async function renderLevel(userId, stageIndex, levelIndex) {
 // Make renderLevel globally accessible
 window.renderLevel = renderLevel;
 
-
-
 function attachDragAndDropEvents() {
     // Drop box
     const dropBox = document.getElementById('drop-box');
@@ -179,8 +226,6 @@ function attachDragAndDropEvents() {
         item.addEventListener('dragstart', drag);
     });
 }
-
-
 
 /**
  * Update the progress bar
@@ -215,7 +260,7 @@ function drop(event) {
 /**
  * Check the user's answer and handle progress
  */
-async function checkAnswer(userId, stageIndex, levelIndex) {
+function checkAnswer(userId, stageIndex, levelIndex) {
     const dropBox = document.getElementById('drop-box');
     const answer = dropBox.innerText;
     const correctAnswer = quizData[stageIndex].levels[levelIndex].correctAnswer;
@@ -231,7 +276,7 @@ async function checkAnswer(userId, stageIndex, levelIndex) {
             notification.className = 'correct';
             notification.style.display = 'block';
             notification.innerText = 'Correct Answer!';
-            stageScores[stageIndex] = (stageScores[stageIndex] || 0) + 10;
+            currentStageScore += 10; // Add 10 points for each correct answer
         } else {
             notification.className = 'incorrect';
             dropBox.style.borderColor = '#dc3545';
@@ -239,7 +284,6 @@ async function checkAnswer(userId, stageIndex, levelIndex) {
             notification.innerText = `Wrong Answer. The correct answer was: ${correctAnswer}`;
         }
 
-        // Add the user's answer to the results array
         userAnswers.push({
             stage: stageIndex + 1,
             level: levelIndex + 1,
@@ -251,12 +295,8 @@ async function checkAnswer(userId, stageIndex, levelIndex) {
         document.querySelector('.cta-btn-course').style.display = 'none';
         showNextLevelButton(userId, stageIndex, levelIndex + 1);
         updateProgressBar(stageIndex, levelIndex + 1);
-        await saveUserData(userId);
     }
 }
-
-
-
 
 /**
  * Disable drag-and-drop after answer is submitted
@@ -284,7 +324,7 @@ function showNextLevelButton(userId, stageIndex, nextLevelIndex) {
 }
 
 /**
- * Display the results screen
+ * Display the results screen and save the best score for the stage
  */
 async function showResults(userId, stageIndex) {
     const quizContainer = document.getElementById('quiz-container');
@@ -306,10 +346,14 @@ async function showResults(userId, stageIndex) {
         </div>
     `;
     document.querySelector('.done-btn-text').addEventListener('click', () => completeStage(userId, stageIndex));
+
+    // Update the best score for the stage only after the stage is completed
+    if (!stageScores[stageIndex] || currentStageScore > stageScores[stageIndex]) {
+        stageScores[stageIndex] = currentStageScore;
+    }
     await saveUserData(userId);
+    currentStageScore = 0; // Reset current stage score for next attempt
 }
-
-
 
 // Attach to the global scope
 window.showResults = showResults;
@@ -330,23 +374,11 @@ function showDetails(index) {
 window.showDetails = showDetails;
 
 /**
- * Retake a quiz stage and reset its score
+ * Retake a quiz stage and reset current stage score
  */
 async function retakeQuiz(userId, stageIndex) {
-    console.log("Retake Quiz called with userId:", userId, "stageIndex:", stageIndex);
-    
-    if (!userId || typeof userId !== 'string') {
-        console.error("Invalid userId in retakeQuiz:", userId);
-        return;
-    }
-    if (typeof stageIndex !== 'number') {
-        console.error("Invalid stageIndex in retakeQuiz:", stageIndex);
-        return;
-    }
-
     userAnswers = []; // Clear user answers
-    stageScores[stageIndex] = 0; // Reset stage scores
-    await saveUserData(userId);
+    currentStageScore = 0; // Reset only the current stage score, keep saved best score
     renderLevel(userId, stageIndex, 0);
     updateProgressBar(stageIndex, 0);
 }
@@ -372,10 +404,6 @@ async function completeStage(userId, stageIndex) {
 // Ensure the function is globally accessible
 window.completeStage = completeStage;
 
-
-
-
-
 // Attach to the global scope
 window.retakeQuiz = retakeQuiz;
 
@@ -388,9 +416,26 @@ window.addEventListener('load', async function () {
         await fetchUserData(userId);
         const stageIndex = parseInt(getQueryParam('stageIndex'), 10) || 0; // Default to stage 0
         renderLevel(userId, stageIndex, 0);
+        stageScores[stageIndex] = 0;
     } else {
         console.error("User ID not found! Please log in.");
         alert("Please log in to access the quiz.");
         window.location.href = 'login.html';
     }
+});
+
+// Function to show the back confirmation modal
+window.goBack = function () {
+    const modal = document.getElementById("back-modal");
+    modal.style.display = "flex";
+};
+
+// Handle confirmation and cancellation
+document.getElementById("confirm-back-button").addEventListener("click", () => {
+    window.location.href = "home.html"; // Redirect to the home page
+});
+
+document.getElementById("cancel-back-button").addEventListener("click", () => {
+    const modal = document.getElementById("back-modal");
+    modal.style.display = "none"; // Close the modal
 });
