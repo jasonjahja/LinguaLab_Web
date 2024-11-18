@@ -1,34 +1,66 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const userId = localStorage.getItem('userId'); // Assume user ID is stored in localStorage
-    if (!userId) {
-        alert("Please log in to view your insights.");
-        window.location.href = "login.html";
-        return;
+import { auth, db } from "./firebase.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+onAuthStateChanged(auth, async (user) => {
+    try {
+        if (user) {
+            console.log("User is logged in:", user.uid);
+            await displayInsights(user.uid);
+        } else {
+            console.error("User is not logged in.");
+            window.location.href = "../pages/login.html"; // Redirect to login
+        }
+    } catch (error) {
+        console.error("Error handling user state change:", error);
     }
-
-    const insightsGrid = document.getElementById("insights-grid");
-
-    // Mock data for insights (replace this with Firestore data fetch)
-    const courseData = [
-        { title: "Beginner English", description: "Start your journey with basics.", progress: 75 },
-        { title: "Intermediate English", description: "Improve your grammar and vocabulary.", progress: 50 },
-        { title: "Advanced English", description: "Master fluency and advanced skills.", progress: 20 },
-        { title: "Business English", description: "Learn English for professional communication.", progress: 90 },
-    ];
-
-    courseData.forEach(course => {
-        const card = document.createElement("div");
-        card.className = "insight-card";
-
-        card.innerHTML = `
-            <h3>${course.title}</h3>
-            <p>${course.description}</p>
-            <div class="progress-bar">
-                <div class="progress" style="width: ${course.progress}%;"></div>
-            </div>
-            <p>Progress: ${course.progress}%</p>
-        `;
-
-        insightsGrid.appendChild(card);
-    });
 });
+
+
+async function fetchUserInsights(userId) {
+    const userRef = doc(db, "users", userId);
+    try {
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+            return userSnap.data();
+        } else {
+            console.error("No user document found!");
+            throw new Error("No user document found!"); // Explicitly throw error
+        }
+    } catch (error) {
+        console.error("Error fetching user insights:", error);
+        throw error; // Re-throw to handle higher in the call stack
+    }
+}
+
+
+// Function to display user insights
+async function displayInsights(userId) {
+    const insightsContainer = document.getElementById("insights-container");
+
+    // Fetch data from Firestore
+    const userData = await fetchUserInsights(userId);
+
+    if (userData) {
+        const { unlockedStages = [], stageScores = [] } = userData;
+
+        // Create Insights UI
+        insightsContainer.innerHTML = `
+            <div class="insights-card">
+                <h2>Welcome Back, User!</h2>
+                <p>Your progress and scores are shown below:</p>
+                <div class="progress-container">
+                    ${unlockedStages.map((stageUnlocked, index) => `
+                        <div class="stage-info">
+                            <h3>Stage ${index + 1}</h3>
+                            <p>Status: ${stageUnlocked ? "Unlocked" : "Locked"}</p>
+                            <p>Best Score: ${stageScores[index] || 0}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    } else {
+        insightsContainer.innerHTML = `<p>Could not load insights. Please try again later.</p>`;
+    }
+}

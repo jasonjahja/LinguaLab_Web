@@ -12,12 +12,43 @@
 <body>
 
     <!-- Navigation Bar -->
-    <!-- <header></header> -->
-
-    <!-- <div id="loading-spinner" class="loading-spinner" style="display: none;">
-        <div class="spinner"></div>
-        <p>Loading...</p>
-    </div> -->
+    <!-- <header>
+        <nav class="navbar">
+            <div class="logo" id="logo-link"><a href="javascript:void(0)">LinguaLab</a></div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="tes2.html">Quiz</a></li>
+            </ul>
+            <div class="profile-div">
+                <a href="profile.html" class="profile-btn">
+                    <img class="profile-img" src="${profileImageUrl}" alt="Profile Image">
+                </a>    
+            </div>
+            <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+        </nav>
+        <div id="sidebar" class="sidebar">
+            <a href="javascript:void(0)" class="close-btn" onclick="toggleSidebar()">&times;</a>
+            <div class="nav-links-mobile"><a href="home.html">Home</a></div>
+            <div class="nav-links-mobile"><a href="course.html">Quiz</a></div>
+            <a href="profile.html" class="profile-btn-mobile">
+                <img class="profile-img" src="${profileImageUrl}" alt="Profile Image">
+            </a>  
+        </div>
+        <div id="logout-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-btn" id="close-modal-navbar">✖</button>
+                <div class="modal-icon-question">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h2>WAIT!</h2>
+                <p>Are you sure you want to log out?</p>
+                <div class="modal-buttons">
+                    <button id="cancel-logout" class="cancel-button">No</button>
+                    <button id="confirm-logout" class="confirm-button">Yes</button>
+                </div>
+            </div>
+        </div>
+    </header> -->
 
     <main class="exercise-page">
         <div class="back-button-container">
@@ -50,7 +81,7 @@
 
     </main>
 
-    <script type="module" src="../script/navbar.js"></script>
+    <!-- <script type="module" src="../script/navbar.js"></script> -->
     <script type="module" src="../script/level.js"></script>
 </body>
 </html>

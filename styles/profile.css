@@ -346,6 +346,12 @@ main {
     margin-right: 8px;
 }
 
+.modal-icon {
+    font-size: 60px;
+    color: #50C878;
+    margin-bottom: 20px;
+}
+
 .modal-icon-question {
     font-size: 60px;
     color: #ffc107;
@@ -356,4 +362,40 @@ main {
     font-size: 60px;
     color: #dc3545;
     margin-bottom: 20px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .profile-container {
+        width: 90%; /* Adjust container width */
+    }
+
+    .profile-container-sides {
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .profile-left, .profile-right {
+        width: 100%; /* Full width for both sections */
+        padding: 10px 20px; /* Adjust padding for smaller screens */
+    }
+
+    .profile-pic {
+        width: 180px; /* Reduce image size */
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        width: 100%; /* Full width on very small screens */
+    }
+
+    .profile-left, .profile-right {
+        padding: 10px; /* Further reduce padding */
+    }
+
+    .profile-pic {
+        width: 150px; /* Further reduce image size */
+        height: 150px;
+    }
 }

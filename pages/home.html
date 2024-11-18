@@ -9,7 +9,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <header></header>
+    <header>
+        <nav class="navbar">
+            <div class="logo" id="logo-link"><a href="javascript:void(0)">LinguaLab</a></div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="tes2.html">Quiz</a></li>
+            </ul>
+            <div class="profile-div">
+                <a href="profile.html" class="profile-btn">
+                    <img class="profile-img" src="${profileImageUrl}" alt="Profile Image">
+                </a>    
+            </div>
+            <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+        </nav>
+        <div id="sidebar" class="sidebar">
+            <a href="javascript:void(0)" class="close-btn" onclick="toggleSidebar()">&times;</a>
+            <div class="nav-links-mobile"><a href="home.html">Home</a></div>
+            <div class="nav-links-mobile"><a href="course.html">Quiz</a></div>
+            <a href="profile.html" class="profile-btn-mobile">
+                <img class="profile-img" src="${profileImageUrl}" alt="Profile Image">
+            </a>  
+        </div>
+        <div id="logout-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-icon-question">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h2>WAIT!</h2>
+                <p>Are you sure you want to log out?</p>
+                <div class="modal-buttons">
+                    <button id="cancel-logout" class="cancel-button">No</button>
+                    <button id="confirm-logout" class="confirm-button">Yes</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
     <main class="home-page">
         <!-- Words of the Day Section -->
         <section class="words-section" id="words-section">
@@ -27,9 +63,9 @@
 
         <!-- Courses Section -->
         <section class="courses-sections" id="courses-sections">
-            <h2 style="color: #007BFF">Courses</h2>
-            <div class="courses-section">
-                <h3>Subcourses</h3>
+            <h2 style="color: #007BFF">Test Your Knowledge</h2>
+            <h3>Challenge yourself with these interactive questions and exercises.</h3>
+            <div class="courses-section">    
                 <div class="card-container" id="card-container"></div>
             </div>
         </section>
