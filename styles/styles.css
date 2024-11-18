@@ -152,7 +152,7 @@ p {
 
 /* Features Section */
 .features {
-    padding: 80px 50px; /* Adjusted for smaller screens */
+    padding: 80px; /* Adjusted for smaller screens */
     background-color: #f9f9f9;
     text-align: center;
 }
@@ -187,8 +187,8 @@ p {
 .feature-image {
     width: 40%;
     max-width: 300px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -399,6 +399,8 @@ p {
 .btn-div {
     text-align: center;
 }
+
+
 
 /* Footer */
 footer {
@@ -669,7 +671,7 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    padding: 4vw;
+    margin: 4vw;
 }
 
 .word-btn {
@@ -790,9 +792,14 @@ footer {
     padding: 12vw 6vw 0;
 }
 
+.courses-sections h3 {
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
 .courses-section {
     text-align: left;
-    margin-bottom: 3vw;
+    margin: 3vw 0;
 }
 
 .card-container {
@@ -888,4 +895,23 @@ footer {
 
 .card.locked .card-thumbnail img {
     opacity: 0.5; /* Dims the thumbnail of locked stages */
+}
+
+.cta-btn-course {
+    margin-top: 2vw;
+    padding: 10px 80px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 0 auto;
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
+    transition: background-color 0.3s, transform 0.3s;
+    color: white;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.cta-btn-course:hover {
+    background-color: #0056b3;
 }
