@@ -210,29 +210,30 @@ p {
     transition: color 0.3s;
 }
 
-/* Responsive Styles */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .navbar li, .profile-btn, .profile-div {
-        display: none;
+    .sidebar a {
+        font-size: 16px; /* Slightly smaller links */
+        padding: 10px 15px; /* Adjust padding */
     }
-    
-    .hamburger {
-        display: block;
-        color: #1e90ff;
-        padding-left: auto;
+
+    .profile-img {
+        width: 40px; /* Smaller profile picture */
+        height: 40px;
     }
 }
 
 @media (max-width: 480px) {
-    .logo a {
-        font-size: 1.2em;
+    .sidebar a {
+        font-size: 14px; /* Compact links */
+        padding: 8px 12px;
     }
 
-    .hamburger {
-        font-size: 1.8em;
+    .profile-img {
+        width: 35px; /* Further reduce profile picture size */
+        height: 35px;
     }
 }
-
 
 
 
@@ -298,9 +299,9 @@ p {
 }
 
 /* Modal Icon */
-.modal-icon {
+.modal-icon-question {
     font-size: 60px;
-    color: #2ecc71; /* Green color */
+    color: #ffc107;
     margin-bottom: 20px;
 }
 

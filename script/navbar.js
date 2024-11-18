@@ -48,8 +48,8 @@ function generateNavbar(profileImageUrl) {
         <div id="logout-modal" class="modal">
             <div class="modal-content">
                 <button class="close-btn" id="close-modal-navbar">✖</button>
-                <div class="modal-icon">
-                    <i class="fas fa-check-circle"></i>
+                <div class="modal-icon-question">
+                    <i class="fas fa-question-circle"></i>
                 </div>
                 <h2>WAIT!</h2>
                 <p>Are you sure you want to log out?</p>

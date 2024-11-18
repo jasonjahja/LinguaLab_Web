@@ -65,6 +65,44 @@
     text-align: center;
 }
 
+
+.auth-right-signup {
+    background-color: #1e90ff; /* Blue accent */
+    color: white;
+    width: 40%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.auth-right-signup h2 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.auth-left-signup {
+    width: 60%;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-left-signup h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-align: center;
+}
+
 .input-group {
     margin-bottom: 10px;
 }
@@ -243,20 +281,99 @@
 }
 
 
-/* Responsive Styles */
+/* Responsive Design */
 @media (max-width: 768px) {
     .auth-container {
-        flex-direction: column;
+        flex-direction: column; /* Stack sections vertically */
         height: auto;
+        margin: 20px;
+    }
+
+    .auth-left, .auth-right {
+        width: 100%; /* Full-width for both sections */
+        padding: 20px;
     }
 
     .auth-left {
-        width: 100%;
+        text-align: center;
+    }
+
+    .auth-left h2 {
+        font-size: 1.8em;
+    }
+
+    .auth-right h2 {
+        font-size: 1.6em;
+    }
+
+    .input-group input {
+        font-size: 0.9em;
+    }
+
+    .auth-btn {
+        font-size: 1em;
+    }
+
+    .modal-content {
+        width: 90%; /* Adjust modal width for smaller screens */
+    }
+
+    .auth-container-signup {
+        flex-direction: column; /* Stack sections vertically */
+        height: auto; /* Allow flexible height */
+    }
+
+    .auth-right-signup,
+    .auth-left-signup {
+        width: 100%; /* Full width for both sections */
         padding: 20px;
     }
 
-    .auth-right {
-        width: 100%;
-        padding: 20px;
+    .auth-right-signup {
+        order: 1; /* Ensure .auth-right-signup is on top */
+    }
+
+    .auth-left-signup {
+        order: 2; /* Ensure .auth-left-signup is below */
+    }
+
+    .auth-right-signup h2,
+    .auth-left-signup h2 {
+        font-size: 1.5em; /* Adjust font size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+
+    .auth-container {
+        flex-direction: column; /* Stack sections vertically */
+        height: auto;
+        margin: 40px 20px;
+    }
+
+    .auth-left h2 {
+        font-size: 1.5em;
+    }
+
+    .auth-right h2 {
+        font-size: 1.4em;
+    }
+
+    .auth-btn {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    .input-group input {
+        font-size: 0.85em;
+        padding: 8px;
+    }
+
+    .toggle-btn {
+        font-size: 16px;
+    }
+
+    .modal-content {
+        width: 95%;
     }
 }
