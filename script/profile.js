@@ -199,21 +199,21 @@ deletePhotoButton.addEventListener('click', () => {
     }
 });
 
-document.getElementById('close-modal').addEventListener('click', () => {
-    document.getElementById('delete-modal').style.display = 'none';
-});
+// document.getElementById('close-modal').addEventListener('click', () => {
+//     document.getElementById('delete-modal').style.display = 'none';
+// });
 
-document.getElementById('close-modal-logout').addEventListener('click', () => {
-    document.getElementById('logout-modal').style.display = 'none';
-});
+// document.getElementById('close-modal-logout').addEventListener('click', () => {
+//     document.getElementById('logout-modal').style.display = 'none';
+// });
 
-document.getElementById('close-modal-edit').addEventListener('click', () => {
-    document.getElementById('edit-modal').style.display = 'none';
-});
+// document.getElementById('close-modal-edit').addEventListener('click', () => {
+//     document.getElementById('edit-modal').style.display = 'none';
+// });
 
-document.getElementById('close-modal-edit-error').addEventListener('click', () => {
-    document.getElementById('error-edit-modal').style.display = 'none';
-});
+// document.getElementById('close-modal-edit-error').addEventListener('click', () => {
+//     document.getElementById('error-edit-modal').style.display = 'none';
+// });
 
 document.getElementById('confirm-edit-error-button').addEventListener('click', () => {
     document.getElementById('error-edit-modal').style.display = 'none';

@@ -67,6 +67,34 @@ p {
     margin-right: 3vw;
 }
 
+.nav-links li {
+    position: relative;
+    display: inline-block;
+    margin: 0 15px; /* Adjust spacing between nav items */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-links li:hover {
+    font-weight: bold;
+    color: #007bff; /* Change text color on hover */
+}
+
+.nav-links li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Position the underline just below the text */
+    width: 0;
+    height: 2px;
+    background-color: #007bff; /* Match the hover text color */
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-links li:hover::after {
+    width: 100%; /* Extend the underline fully on hover */
+}
+
 /* Default styles */
 .navbar .login-btn {
     margin-left: auto;
@@ -76,14 +104,6 @@ p {
     font-weight: bold;
     border-radius: 20px;
     transition: padding 0.3s, font-size 0.3s;
-}
-
-/* Tablet screen (max-width: 768px) */
-@media (max-width: 768px) {
-    .navbar .login-btn {
-        padding: 8px 40px; /* Reduce padding */
-        font-size: 0.9em; /* Slightly smaller font */
-    }
 }
 
 /* Mobile screen (max-width: 480px) */
@@ -118,10 +138,10 @@ p {
 
 /* Profile button mobile */
 .profile-btn-mobile {
-    margin-top: auto; /* Push it to the bottom */
     text-align: center;
     display: block;
-    padding: 1.5rem 0; /* Add padding for spacing */
+    padding: 1.5rem 0;
+    margin: auto auto 10vh;
 }
 
 .profile-btn-mobile .profile-img {
@@ -134,55 +154,60 @@ p {
     transition: transform 0.3s ease;
 }
 
+/* Default visibility settings */
 .hamburger {
-    display: none;
-    font-size: 2em;
+    display: none; /* Hidden by default */
+    font-size: 24px;
     cursor: pointer;
+    padding: 10px;
+    color: #333;
+    background: none;
+    border: none;
 }
 
-/* Sidebar container */
 .sidebar {
-    height: 100%; /* Full-height */
-    width: 0; /* Set initial width to 0 */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Stay on top of everything */
+    width: 0; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
     top: 0;
-    right: 0; /* Align to the right */
-    background-color: #1e90ff; /* Dark background color */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    transition: 0.4s; /* Smooth slide-in effect */
-    padding-top: 60px; /* Add padding for content */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Separate main items and profile */
+    right: 0;
+    height: 100%;
+    background-color: #1e90ff;
+    overflow-x: hidden;
+    transition: 0.4s ease;
+    padding-top: 60px;
 }
 
-/* Sidebar links */
 .sidebar a {
+    display: block;
     padding: 10px 20px;
     text-decoration: none;
     font-size: 18px;
-    color: #ffffff;
-    display: block;
-    transition: 0.3s;
-    text-align: left;
+    color: #fff;
 }
 
-/* Close button */
-.sidebar .close-btn {
+.nav-links-mobile {
+    padding: 10px 0;
+    width: 100%;
+    border-bottom: 1px solid;
+    border-radius: 4px;
+    border-color: white;
+}
+
+.sidebar {
     position: absolute;
     top: 20px;
-    right: 0px;
-    font-size: 30px;
-    color: #ffffff;
+    right: 15px;
+    font-size: 24px;
     cursor: pointer;
+    color: #fff;
 }
 
-/* Profile section at the bottom */
-.profile-btn-mobile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Hide the sidebar when not toggled */
+.sidebar.hidden {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 .profile-img {
@@ -202,16 +227,17 @@ p {
     width: 250px; /* Adjust width when open */
 }
 
-/* Hamburger button */
-.hamburger {
-    font-size: 28px;
-    cursor: pointer;
-    color: #ffffff;
-    transition: color 0.3s;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .hamburger {
+        font-size: 28px;
+        cursor: pointer;
+        color: #1e90ff;
+        transition: color 0.3s;
+        padding: 12px;
+        display: block;
+    }
+
     .sidebar a {
         font-size: 16px; /* Slightly smaller links */
         padding: 10px 15px; /* Adjust padding */
@@ -220,6 +246,26 @@ p {
     .profile-img {
         width: 40px; /* Smaller profile picture */
         height: 40px;
+    }
+
+    .nav-links li {
+        display: none; /* Hide regular navigation links */
+    }
+
+    .profile-div {
+        display: none; /* Hide regular navigation links */
+    }
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+    }
+
+    .navbar .login-btn {
+        padding: 8px 40px; /* Reduce padding */
+        font-size: 0.9em; /* Slightly smaller font */
     }
 }
 
@@ -234,30 +280,6 @@ p {
         height: 35px;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Modal Background */
 .modal {
@@ -283,19 +305,6 @@ p {
     position: relative;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     animation: fade-in 0.3s ease-in-out;
-}
-
-/* Close Button */
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    cursor: pointer;
 }
 
 /* Modal Icon */

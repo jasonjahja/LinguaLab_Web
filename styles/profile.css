@@ -346,6 +346,12 @@ main {
     margin-right: 8px;
 }
 
+.modal-icon {
+    font-size: 60px;
+    color: #50C878;
+    margin-bottom: 20px;
+}
+
 .modal-icon-question {
     font-size: 60px;
     color: #ffc107;
